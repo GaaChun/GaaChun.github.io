@@ -173,7 +173,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 634 个字)
+                    4 分钟 读完 (大约 635 个字)
                 </span>
                 
                 
@@ -199,17 +199,16 @@ var _hmt = _hmt || [];
 <blockquote>
 <p><code>http://music.163.com/#/outchain/0/&lt;playlist-id&gt;/</code></p>
 </blockquote>
-<h1 id="照葫芦画瓢"><a href="#照葫芦画瓢" class="headerlink" title="照葫芦画瓢"></a>照葫芦画瓢</h1><p>查看icarus内widght的写法，然后来学习如何写一个部件吧～，部件的路径为<code>themes/icarus/layout/widget</code>，先看看最简单的<code>links.ejs</code> 和 <code>recent_posts.ejs</code> 吧～<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;% const links = get_config_from_obj(widget, &apos;links&apos;); %&gt;</span><br><span class="line">&lt;% if (links !== null) &#123; %&gt;</span><br><span class="line">&lt;div class=&quot;card widget&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;card-content&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;menu&quot;&gt;</span><br><span class="line">        &lt;h3 class=&quot;menu-label&quot;&gt;</span><br><span class="line">            &lt;%= __(&apos;widget.links&apos;) %&gt;</span><br><span class="line">        &lt;/h3&gt;</span><br><span class="line">        &lt;ul class=&quot;menu-list&quot;&gt;</span><br><span class="line">            ...</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (site.posts.length) &#123; %&gt;</span><br><span class="line">&lt;div class=&quot;card widget&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;card-content&quot;&gt;</span><br><span class="line">        &lt;h3 class=&quot;menu-label&quot;&gt;</span><br><span class="line">            &lt;%= __(&apos;widget.recents&apos;) %&gt;</span><br><span class="line">        &lt;/h3&gt;</span><br><span class="line">        &lt;% site.posts.sort(&apos;date&apos;, -1).limit(5).each(post =&gt; &#123; %&gt;</span><br><span class="line">        &lt;article class=&quot;media&quot;&gt;</span><br><span class="line">            ...</span><br><span class="line">        &lt;/article&gt;</span><br><span class="line">        &lt;% &#125;) %&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
-<p><code>get_config_from_obj(widget, &#39;links&#39;);</code>这函数是从<code>config.yml</code>从<code>widget</code>节点下获取<code>links</code>子元素，<code>__(&#39;widget.links&#39;)</code>是从<code>languages</code>中的语言文件拿出<code>widget.links</code>对应的语言变量。EJS的语法可以查看<a href="https://ejs.co/#docs" target="_blank" rel="noopener">EJS docs</a>，其他基础的不多作解释了～</p>
-<p>看完两个部件的模板文件，得出部件的结构如下<br><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card widget"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card-content"</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu-label"</span>&gt;</span> <span class="hljs-comment">&lt;!-- 部件标题 --&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span> <span class="hljs-comment">&lt;!-- 小部件内容 --&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="http://imgsrc.baidu.com/forum/pic/item/d3f1bf4bd11373f0b145c093aa0f4bfbfaed04f1.jpg" alt="呜姆！">好了，确定结构后就开始敲代码吧！<br>先在<code>themes/icarus/layout/widget</code>做一个<code>cloudmusic.ejs</code>部件模板～<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;% const playlistid = get_config_from_obj(widget, &apos;playlist-id&apos;); %&gt; </span><br><span class="line">&lt;% if (playlistid !== null) &#123; %&gt; &lt;!-- 判断config.yml中有没有playlistid --&gt;</span><br><span class="line">&lt;div class=&quot;card widget&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;card-content&quot;&gt;</span><br><span class="line">        &lt;h3 class=&quot;menu-label&quot;&gt;</span><br><span class="line">            &lt;%= __(&apos;widget.cloudmusic&apos;) %&gt; &lt;!-- 获取语言文件 --&gt;</span><br><span class="line">        &lt;/h3&gt;</span><br><span class="line">        &lt;!-- 网易云外链播放器 --&gt;</span><br><span class="line">        &lt;!-- style=&quot;width: 100%; height: 60vh;&quot; 100%宽度，60vh高度 = 60%页面可视高度--&gt;</span><br><span class="line">        &lt;iframe id=&quot;cloudmusic&quot; frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; style=&quot;width: 100%; height: 60vh;&quot;</span><br><span class="line">            src=&quot;//music.163.com/outchain/player?type=0&amp;id=&lt;%= playlistid %&gt;&amp;auto=1&amp;height=430&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></p>
-<p>在<code>zh-CN.yml</code>添加上对应的翻译～（我找谷歌娘翻译好11种语言的网易云音乐了¯_(ツ)_/¯）<br><figure class="highlight yml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">...</span></span><br><span class="line"><span class="hljs-attr">widget:</span></span><br><span class="line"><span class="hljs-attr">    follow:</span> <span class="hljs-string">'关注我'</span></span><br><span class="line"><span class="hljs-attr">    recents:</span> <span class="hljs-string">'最新文章'</span></span><br><span class="line"><span class="hljs-attr">    links:</span> <span class="hljs-string">'链接'</span></span><br><span class="line"><span class="hljs-attr">    tag_cloud:</span> <span class="hljs-string">'标签云'</span></span><br><span class="line"><span class="hljs-attr">    catalogue:</span> <span class="hljs-string">'目录'</span></span><br><span class="line"><span class="hljs-attr">    cloudmusic:</span> <span class="hljs-string">'网易云音乐'</span></span><br><span class="line"><span class="hljs-string">...</span></span><br></pre></td></tr></table></figure></p>
-<p>最后在<code>_config.yml</code>中添加上部件～<br><figure class="highlight yml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">widgets:</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">    <span class="hljs-string">...</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">        <span class="hljs-comment"># Widget name</span></span><br><span class="line"><span class="hljs-attr">        type:</span> <span class="hljs-string">cloudmusic</span></span><br><span class="line">        <span class="hljs-comment"># Where should the widget be placed, left or right</span></span><br><span class="line"><span class="hljs-attr">        position:</span> <span class="hljs-string">right</span></span><br><span class="line">        <span class="hljs-comment"># Netease music playlist id</span></span><br><span class="line"><span class="hljs-attr">        playlist-id:</span> <span class="hljs-string">'150560845'</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">    <span class="hljs-string">...</span></span><br></pre></td></tr></table></figure></p>
-<p>最后<code>hexo s</code>运行本地服务器就看到在博客右边多了刚刚做的网易云小部件了～Icarus这个主题每个部件基本都是一个<code>card</code>的元素，可以说是管理部件模板什么的很方便了～</p>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/03/26/cloud-widget/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -441,6 +440,25 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
+            <a href="/2019/03/26/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://images.unsplash.com/photo-1546417492-3f58b4f55148?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1568&amp;q=80" alt="Hello World">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-26T13:19:59.262Z">2019-03-26</time></div>
+                    <a href="/2019/03/26/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Test/">Test</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/03/26/cloud-widget/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1500&amp;q=80" alt="网易云播放器小部件">
@@ -453,25 +471,6 @@ var _hmt = _hmt || [];
                     <a href="/2019/03/26/cloud-widget/" class="has-link-black-ter is-size-6">网易云播放器小部件</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Hexo/">Hexo</a> / <a class="has-link-grey -link" href="/categories/Hexo/Widgets/">Widgets</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/03/26/hello-world/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://images.unsplash.com/photo-1546417492-3f58b4f55148?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1568&amp;q=80" alt="Hello World">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-25T16:27:16.157Z">2019-03-26</time></div>
-                    <a href="/2019/03/26/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Test/">Test</a>
                     </p>
                 </div>
             </div>
@@ -578,6 +577,25 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
+            <a href="/2019/03/26/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://images.unsplash.com/photo-1546417492-3f58b4f55148?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1568&amp;q=80" alt="Hello World">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-26T13:19:59.262Z">2019-03-26</time></div>
+                    <a href="/2019/03/26/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Test/">Test</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/03/26/cloud-widget/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1500&amp;q=80" alt="网易云播放器小部件">
@@ -590,25 +608,6 @@ var _hmt = _hmt || [];
                     <a href="/2019/03/26/cloud-widget/" class="has-link-black-ter is-size-6">网易云播放器小部件</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Hexo/">Hexo</a> / <a class="has-link-grey -link" href="/categories/Hexo/Widgets/">Widgets</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/03/26/hello-world/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://images.unsplash.com/photo-1546417492-3f58b4f55148?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1568&amp;q=80" alt="Hello World">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-25T16:27:16.157Z">2019-03-26</time></div>
-                    <a href="/2019/03/26/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Test/">Test</a>
                     </p>
                 </div>
             </div>

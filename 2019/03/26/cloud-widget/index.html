@@ -16,7 +16,7 @@
 <meta property="og:description" content="做了一晚上，终于把自己的Blog给部署上Github了，用的icarus Theme。作为一个爱听歌的肥宅没有点音乐怎么行呢，然后给自己的Blog加了个网易云播放器～ 自己动手，丰衣足食用网易云新建歌单外链的时候提示“由于版权保护，无法生成外链。”，于是乎看了生成外链与歌单的链接格式。歌单链接  https://music.163.com/#/playlist?id=150560845  生成外链">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://imgsrc.baidu.com/forum/pic/item/d3f1bf4bd11373f0b145c093aa0f4bfbfaed04f1.jpg">
-<meta property="og:updated_time" content="2019-03-26T13:16:00.268Z">
+<meta property="og:updated_time" content="2019-03-26T13:19:50.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网易云播放器小部件">
 <meta name="twitter:description" content="做了一晚上，终于把自己的Blog给部署上Github了，用的icarus Theme。作为一个爱听歌的肥宅没有点音乐怎么行呢，然后给自己的Blog加了个网易云播放器～ 自己动手，丰衣足食用网易云新建歌单外链的时候提示“由于版权保护，无法生成外链。”，于是乎看了生成外链与歌单的链接格式。歌单链接  https://music.163.com/#/playlist?id=150560845  生成外链">
@@ -169,7 +169,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 634 个字)
+                    4 分钟 读完 (大约 635 个字)
                 </span>
                 
                 
@@ -195,6 +195,7 @@ var _hmt = _hmt || [];
 <blockquote>
 <p><code>http://music.163.com/#/outchain/0/&lt;playlist-id&gt;/</code></p>
 </blockquote>
+<a id="more"></a> 
 <h1 id="照葫芦画瓢"><a href="#照葫芦画瓢" class="headerlink" title="照葫芦画瓢"></a>照葫芦画瓢</h1><p>查看icarus内widght的写法，然后来学习如何写一个部件吧～，部件的路径为<code>themes/icarus/layout/widget</code>，先看看最简单的<code>links.ejs</code> 和 <code>recent_posts.ejs</code> 吧～<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;% const links = get_config_from_obj(widget, &apos;links&apos;); %&gt;</span><br><span class="line">&lt;% if (links !== null) &#123; %&gt;</span><br><span class="line">&lt;div class=&quot;card widget&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;card-content&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;menu&quot;&gt;</span><br><span class="line">        &lt;h3 class=&quot;menu-label&quot;&gt;</span><br><span class="line">            &lt;%= __(&apos;widget.links&apos;) %&gt;</span><br><span class="line">        &lt;/h3&gt;</span><br><span class="line">        &lt;ul class=&quot;menu-list&quot;&gt;</span><br><span class="line">            ...</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (site.posts.length) &#123; %&gt;</span><br><span class="line">&lt;div class=&quot;card widget&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;card-content&quot;&gt;</span><br><span class="line">        &lt;h3 class=&quot;menu-label&quot;&gt;</span><br><span class="line">            &lt;%= __(&apos;widget.recents&apos;) %&gt;</span><br><span class="line">        &lt;/h3&gt;</span><br><span class="line">        &lt;% site.posts.sort(&apos;date&apos;, -1).limit(5).each(post =&gt; &#123; %&gt;</span><br><span class="line">        &lt;article class=&quot;media&quot;&gt;</span><br><span class="line">            ...</span><br><span class="line">        &lt;/article&gt;</span><br><span class="line">        &lt;% &#125;) %&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 <p><code>get_config_from_obj(widget, &#39;links&#39;);</code>这函数是从<code>config.yml</code>从<code>widget</code>节点下获取<code>links</code>子元素，<code>__(&#39;widget.links&#39;)</code>是从<code>languages</code>中的语言文件拿出<code>widget.links</code>对应的语言变量。EJS的语法可以查看<a href="https://ejs.co/#docs" target="_blank" rel="noopener">EJS docs</a>，其他基础的不多作解释了～</p>
@@ -256,13 +257,13 @@ var _hmt = _hmt || [];
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/03/26/hello-world/">
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/03/26/hello-world/">
+                <i class="level-item fas fa-chevron-left"></i>
                 <span class="level-item">Hello World</span>
-                <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
+        
         
     </div>
 </div>
@@ -509,6 +510,25 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
+            <a href="/2019/03/26/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://images.unsplash.com/photo-1546417492-3f58b4f55148?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1568&amp;q=80" alt="Hello World">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-26T13:19:59.262Z">2019-03-26</time></div>
+                    <a href="/2019/03/26/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Test/">Test</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/03/26/cloud-widget/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1500&amp;q=80" alt="网易云播放器小部件">
@@ -521,25 +541,6 @@ var _hmt = _hmt || [];
                     <a href="/2019/03/26/cloud-widget/" class="has-link-black-ter is-size-6">网易云播放器小部件</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Hexo/">Hexo</a> / <a class="has-link-grey -link" href="/categories/Hexo/Widgets/">Widgets</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/03/26/hello-world/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://images.unsplash.com/photo-1546417492-3f58b4f55148?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1568&amp;q=80" alt="Hello World">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-25T16:27:16.157Z">2019-03-26</time></div>
-                    <a href="/2019/03/26/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Test/">Test</a>
                     </p>
                 </div>
             </div>
@@ -646,6 +647,25 @@ var _hmt = _hmt || [];
         
         <article class="media">
             
+            <a href="/2019/03/26/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://images.unsplash.com/photo-1546417492-3f58b4f55148?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1568&amp;q=80" alt="Hello World">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-26T13:19:59.262Z">2019-03-26</time></div>
+                    <a href="/2019/03/26/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Test/">Test</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/03/26/cloud-widget/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1500&amp;q=80" alt="网易云播放器小部件">
@@ -658,25 +678,6 @@ var _hmt = _hmt || [];
                     <a href="/2019/03/26/cloud-widget/" class="has-link-black-ter is-size-6">网易云播放器小部件</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Hexo/">Hexo</a> / <a class="has-link-grey -link" href="/categories/Hexo/Widgets/">Widgets</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/03/26/hello-world/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://images.unsplash.com/photo-1546417492-3f58b4f55148?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1568&amp;q=80" alt="Hello World">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-25T16:27:16.157Z">2019-03-26</time></div>
-                    <a href="/2019/03/26/hello-world/" class="has-link-black-ter is-size-6">Hello World</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Test/">Test</a>
                     </p>
                 </div>
             </div>
