@@ -235,10 +235,20 @@
     <div class="card-content">
         <h3 class="title is-5 has-text-weight-normal">评论</h3>
         
-<div class="notification is-danger">
-    You forgot to set the <code>owner</code>, <code>admin</code>, <code>repo</code>, <code>client_id</code>, or <code>client_secret</code> for Gittalk.
-    Please set it in <code>_config.yml</code>.
-</div>
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.4.1/gitalk.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.4.1/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '2059dc6d03d039d4dc1d',
+        clientSecret: 'e6488bef218f02522de5eab24b090639e5ae576b',
+        id: '5db6f5e94687fcdb1d9377faa288e4b5',
+        repo: 'Blog',
+        owner: 'GaaChun',
+        admin: ["GaaChun"]
+    })
+    gitalk.render('comment-container')
+</script>
 
     </div>
 </div>
