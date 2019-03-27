@@ -7,22 +7,24 @@
 
 
 
-    <meta name="description" content="做了一晚上，终于把自己的Blog给部署上Github了，用的icarus Theme。作为一个爱听歌的肥宅没有点音乐怎么行呢，然后给自己的Blog加了个网易云播放器～ 自己动手，丰衣足食用网易云新建歌单外链的时候提示“由于版权保护，无法生成外链。”，于是乎看了生成外链与歌单的链接格式。歌单链接  https://music.163.com/#/playlist?id=150560845  生成外链">
+    <meta name="description" content="做了一晚上，终于把自己的Blog给部署上Github了，用的icarus Theme。作为一个爱听歌的肥宅没有点音乐怎么行呢，然后给自己的Blog加了个网易云播放器～">
 <meta name="keywords" content="widget">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网易云播放器小部件">
 <meta property="og:url" content="http://yoursite.com/2019/03/26/cloud-widget/index.html">
 <meta property="og:site_name" content="Chun&#39;s blog">
-<meta property="og:description" content="做了一晚上，终于把自己的Blog给部署上Github了，用的icarus Theme。作为一个爱听歌的肥宅没有点音乐怎么行呢，然后给自己的Blog加了个网易云播放器～ 自己动手，丰衣足食用网易云新建歌单外链的时候提示“由于版权保护，无法生成外链。”，于是乎看了生成外链与歌单的链接格式。歌单链接  https://music.163.com/#/playlist?id=150560845  生成外链">
+<meta property="og:description" content="做了一晚上，终于把自己的Blog给部署上Github了，用的icarus Theme。作为一个爱听歌的肥宅没有点音乐怎么行呢，然后给自己的Blog加了个网易云播放器～">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://imgsrc.baidu.com/forum/pic/item/d3f1bf4bd11373f0b145c093aa0f4bfbfaed04f1.jpg">
-<meta property="og:updated_time" content="2019-03-26T13:19:50.407Z">
+<meta property="og:image" content="http://yoursite.com/images/nio.jpg">
+<meta property="og:updated_time" content="2019-03-26T14:59:13.868Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网易云播放器小部件">
-<meta name="twitter:description" content="做了一晚上，终于把自己的Blog给部署上Github了，用的icarus Theme。作为一个爱听歌的肥宅没有点音乐怎么行呢，然后给自己的Blog加了个网易云播放器～ 自己动手，丰衣足食用网易云新建歌单外链的时候提示“由于版权保护，无法生成外链。”，于是乎看了生成外链与歌单的链接格式。歌单链接  https://music.163.com/#/playlist?id=150560845  生成外链">
-<meta name="twitter:image" content="http://imgsrc.baidu.com/forum/pic/item/d3f1bf4bd11373f0b145c093aa0f4bfbfaed04f1.jpg">
+<meta name="twitter:description" content="做了一晚上，终于把自己的Blog给部署上Github了，用的icarus Theme。作为一个爱听歌的肥宅没有点音乐怎么行呢，然后给自己的Blog加了个网易云播放器～">
+<meta name="twitter:image" content="http://yoursite.com/images/nio.jpg">
 
 
+
+<link rel="alternative" href="https://gaachun.github.io" title="网易云播放器小部件" type="application/atom+xml">
 
 
 
@@ -169,7 +171,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 635 个字)
+                    4 分钟 读完 (大约 619 个字)
                 </span>
                 
                 
@@ -183,6 +185,7 @@ var _hmt = _hmt || [];
         </h1>
         <div class="content">
             <p>做了一晚上，终于把自己的Blog给部署上Github了，用的icarus Theme。作为一个爱听歌的肥宅没有点音乐怎么行呢，然后给自己的Blog加了个网易云播放器～</p>
+<a id="more"></a>
 <h1 id="自己动手，丰衣足食"><a href="#自己动手，丰衣足食" class="headerlink" title="自己动手，丰衣足食"></a>自己动手，丰衣足食</h1><p>用网易云新建歌单外链的时候提示“由于版权保护，无法生成外链。”，于是乎看了生成外链与歌单的链接格式。<br>歌单链接</p>
 <blockquote>
 <p><a href="https://music.163.com/#/playlist?id=150560845" target="_blank" rel="noopener">https://music.163.com/#/playlist?id=150560845</a></p>
@@ -195,13 +198,12 @@ var _hmt = _hmt || [];
 <blockquote>
 <p><code>http://music.163.com/#/outchain/0/&lt;playlist-id&gt;/</code></p>
 </blockquote>
-<a id="more"></a> 
 <h1 id="照葫芦画瓢"><a href="#照葫芦画瓢" class="headerlink" title="照葫芦画瓢"></a>照葫芦画瓢</h1><p>查看icarus内widght的写法，然后来学习如何写一个部件吧～，部件的路径为<code>themes/icarus/layout/widget</code>，先看看最简单的<code>links.ejs</code> 和 <code>recent_posts.ejs</code> 吧～<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;% const links = get_config_from_obj(widget, &apos;links&apos;); %&gt;</span><br><span class="line">&lt;% if (links !== null) &#123; %&gt;</span><br><span class="line">&lt;div class=&quot;card widget&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;card-content&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;menu&quot;&gt;</span><br><span class="line">        &lt;h3 class=&quot;menu-label&quot;&gt;</span><br><span class="line">            &lt;%= __(&apos;widget.links&apos;) %&gt;</span><br><span class="line">        &lt;/h3&gt;</span><br><span class="line">        &lt;ul class=&quot;menu-list&quot;&gt;</span><br><span class="line">            ...</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (site.posts.length) &#123; %&gt;</span><br><span class="line">&lt;div class=&quot;card widget&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;card-content&quot;&gt;</span><br><span class="line">        &lt;h3 class=&quot;menu-label&quot;&gt;</span><br><span class="line">            &lt;%= __(&apos;widget.recents&apos;) %&gt;</span><br><span class="line">        &lt;/h3&gt;</span><br><span class="line">        &lt;% site.posts.sort(&apos;date&apos;, -1).limit(5).each(post =&gt; &#123; %&gt;</span><br><span class="line">        &lt;article class=&quot;media&quot;&gt;</span><br><span class="line">            ...</span><br><span class="line">        &lt;/article&gt;</span><br><span class="line">        &lt;% &#125;) %&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 <p><code>get_config_from_obj(widget, &#39;links&#39;);</code>这函数是从<code>config.yml</code>从<code>widget</code>节点下获取<code>links</code>子元素，<code>__(&#39;widget.links&#39;)</code>是从<code>languages</code>中的语言文件拿出<code>widget.links</code>对应的语言变量。EJS的语法可以查看<a href="https://ejs.co/#docs" target="_blank" rel="noopener">EJS docs</a>，其他基础的不多作解释了～</p>
 <p>看完两个部件的模板文件，得出部件的结构如下<br><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card widget"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card-content"</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu-label"</span>&gt;</span> <span class="hljs-comment">&lt;!-- 部件标题 --&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span> <span class="hljs-comment">&lt;!-- 小部件内容 --&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="http://imgsrc.baidu.com/forum/pic/item/d3f1bf4bd11373f0b145c093aa0f4bfbfaed04f1.jpg" alt="呜姆！">好了，确定结构后就开始敲代码吧！<br>先在<code>themes/icarus/layout/widget</code>做一个<code>cloudmusic.ejs</code>部件模板～<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;% const playlistid = get_config_from_obj(widget, &apos;playlist-id&apos;); %&gt; </span><br><span class="line">&lt;% if (playlistid !== null) &#123; %&gt; &lt;!-- 判断config.yml中有没有playlistid --&gt;</span><br><span class="line">&lt;div class=&quot;card widget&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;card-content&quot;&gt;</span><br><span class="line">        &lt;h3 class=&quot;menu-label&quot;&gt;</span><br><span class="line">            &lt;%= __(&apos;widget.cloudmusic&apos;) %&gt; &lt;!-- 获取语言文件 --&gt;</span><br><span class="line">        &lt;/h3&gt;</span><br><span class="line">        &lt;!-- 网易云外链播放器 --&gt;</span><br><span class="line">        &lt;!-- style=&quot;width: 100%; height: 60vh;&quot; 100%宽度，60vh高度 = 60%页面可视高度--&gt;</span><br><span class="line">        &lt;iframe id=&quot;cloudmusic&quot; frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; style=&quot;width: 100%; height: 60vh;&quot;</span><br><span class="line">            src=&quot;//music.163.com/outchain/player?type=0&amp;id=&lt;%= playlistid %&gt;&amp;auto=1&amp;height=430&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></p>
-<p>在<code>zh-CN.yml</code>添加上对应的翻译～（我找谷歌娘翻译好11种语言的网易云音乐了¯_(ツ)_/¯）<br><figure class="highlight yml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">...</span></span><br><span class="line"><span class="hljs-attr">widget:</span></span><br><span class="line"><span class="hljs-attr">    follow:</span> <span class="hljs-string">'关注我'</span></span><br><span class="line"><span class="hljs-attr">    recents:</span> <span class="hljs-string">'最新文章'</span></span><br><span class="line"><span class="hljs-attr">    links:</span> <span class="hljs-string">'链接'</span></span><br><span class="line"><span class="hljs-attr">    tag_cloud:</span> <span class="hljs-string">'标签云'</span></span><br><span class="line"><span class="hljs-attr">    catalogue:</span> <span class="hljs-string">'目录'</span></span><br><span class="line"><span class="hljs-attr">    cloudmusic:</span> <span class="hljs-string">'网易云音乐'</span></span><br><span class="line"><span class="hljs-string">...</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/nio.jpg" alt="呜姆！">好了，确定结构后就开始敲代码吧！<br>先在<code>themes/icarus/layout/widget</code>做一个<code>cloudmusic.ejs</code>部件模板～<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;% const playlistid = get_config_from_obj(widget, &apos;playlist-id&apos;); %&gt; </span><br><span class="line">&lt;% if (playlistid !== null) &#123; %&gt; &lt;!-- 判断config.yml中有没有playlistid --&gt;</span><br><span class="line">&lt;div class=&quot;card widget&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;card-content&quot;&gt;</span><br><span class="line">        &lt;h3 class=&quot;menu-label&quot;&gt;</span><br><span class="line">            &lt;%= __(&apos;widget.cloudmusic&apos;) %&gt; &lt;!-- 获取语言文件 --&gt;</span><br><span class="line">        &lt;/h3&gt;</span><br><span class="line">        &lt;!-- 网易云外链播放器 --&gt;</span><br><span class="line">        &lt;!-- style=&quot;width: 100%; height: 60vh;&quot; 100%宽度，60vh高度 = 60%页面可视高度--&gt;</span><br><span class="line">        &lt;iframe id=&quot;cloudmusic&quot; frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; style=&quot;width: 100%; height: 60vh;&quot;</span><br><span class="line">            src=&quot;//music.163.com/outchain/player?type=0&amp;id=&lt;%= playlistid %&gt;&amp;auto=1&amp;height=430&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在<code>zh-CN.yml</code>添加上对应的翻译～（我找谷歌娘翻译好11种语言的网易云音乐了¯\_(ツ)_/¯）<br><figure class="highlight yml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-string">...</span></span><br><span class="line"><span class="hljs-attr">widget:</span></span><br><span class="line"><span class="hljs-attr">    follow:</span> <span class="hljs-string">'关注我'</span></span><br><span class="line"><span class="hljs-attr">    recents:</span> <span class="hljs-string">'最新文章'</span></span><br><span class="line"><span class="hljs-attr">    links:</span> <span class="hljs-string">'链接'</span></span><br><span class="line"><span class="hljs-attr">    tag_cloud:</span> <span class="hljs-string">'标签云'</span></span><br><span class="line"><span class="hljs-attr">    catalogue:</span> <span class="hljs-string">'目录'</span></span><br><span class="line"><span class="hljs-attr">    cloudmusic:</span> <span class="hljs-string">'网易云音乐'</span></span><br><span class="line"><span class="hljs-string">...</span></span><br></pre></td></tr></table></figure></p>
 <p>最后在<code>_config.yml</code>中添加上部件～<br><figure class="highlight yml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">widgets:</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">    <span class="hljs-string">...</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">        <span class="hljs-comment"># Widget name</span></span><br><span class="line"><span class="hljs-attr">        type:</span> <span class="hljs-string">cloudmusic</span></span><br><span class="line">        <span class="hljs-comment"># Where should the widget be placed, left or right</span></span><br><span class="line"><span class="hljs-attr">        position:</span> <span class="hljs-string">right</span></span><br><span class="line">        <span class="hljs-comment"># Netease music playlist id</span></span><br><span class="line"><span class="hljs-attr">        playlist-id:</span> <span class="hljs-string">'150560845'</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">    <span class="hljs-string">...</span></span><br></pre></td></tr></table></figure></p>
 <p>最后<code>hexo s</code>运行本地服务器就看到在博客右边多了刚刚做的网易云小部件了～Icarus这个主题每个部件基本都是一个<code>card</code>的元素，可以说是管理部件模板什么的很方便了～</p>
 
@@ -217,6 +219,25 @@ var _hmt = _hmt || [];
         </div>
         
         
+        
+         
+<div class="social-share" style="text-align: center">
+    <h3 class="menu-label has-text-centered">❤ Share this page ❤</h3>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+<script>
+    var $config = {
+        sites: ["qzone","qq","weibo","wechat","google","facebook","twitter"], // 启用的站点
+        disabled: [null], // 禁用的站点
+        // 
+        //     wechatQrcodeTitle: '微信扫一扫：分享', // 微信二维码提示文字
+        // 
+        // 
+    }
+    socialShare('.social-share', $config);
+</script>
+
         
     </div>
 </div>
@@ -387,8 +408,6 @@ var _hmt = _hmt || [];
 </div>
     
         
-    
-        
 
 <div class="card widget">
     <div class="card-content">
@@ -397,6 +416,17 @@ var _hmt = _hmt || [];
             链接
         </h3>
         <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://txb582.gitee.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">C5&#39;s Blog</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">txb582.gitee.io</span>
+                    </span>
+                </a>
+            </li>
         
             <li>
                 <a class="level is-mobile" href="https://unsplash.com/" target="_blank">
@@ -427,17 +457,6 @@ var _hmt = _hmt || [];
                     </span>
                     <span class="level-right">
                         <span class="level-item tag">sf.gg</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://juejin.im/" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">Juejin</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">juejin.im</span>
                     </span>
                 </a>
             </li>
@@ -494,6 +513,8 @@ var _hmt = _hmt || [];
         <div class="column-right-shadow is-hidden-widescreen ">
         
             
+        
+            
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
@@ -607,7 +628,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             网易云音乐
         </h3>
-        <iframe id="cloudmusic" frameborder="no" border="0" marginwidth="0" marginheight="0" style="width: 100%; height: 60vh;" src="//music.163.com/outchain/player?type=0&id=150560845&auto=1&height=430"></iframe>
+        <iframe id="cloudmusic" frameborder="no" border="0" marginwidth="0" marginheight="0" style="width: 100%; min-height:105px; height: 60vh;" src="//music.163.com/outchain/player?type=0&id=150560845&auto=1&height=430"></iframe>
     </div>
 </div>
 
@@ -624,6 +645,8 @@ var _hmt = _hmt || [];
 <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
     
         
+    
+        
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
@@ -737,7 +760,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             网易云音乐
         </h3>
-        <iframe id="cloudmusic" frameborder="no" border="0" marginwidth="0" marginheight="0" style="width: 100%; height: 60vh;" src="//music.163.com/outchain/player?type=0&id=150560845&auto=1&height=430"></iframe>
+        <iframe id="cloudmusic" frameborder="no" border="0" marginwidth="0" marginheight="0" style="width: 100%; min-height:105px; height: 60vh;" src="//music.163.com/outchain/player?type=0&id=150560845&auto=1&height=430"></iframe>
     </div>
 </div>
 
