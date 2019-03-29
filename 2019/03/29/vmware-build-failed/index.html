@@ -3,22 +3,27 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: first post - Chun&#39;s blog</title>
+<title>Vmware内核编译失败 - Chun&#39;s blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Chun&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/first-post/index.html">
+    <meta name="description" content="今天更新了Fedora的kernel,版本号为5.0.3-200.fc29.x86_64，Vmware Workstation版本号为15.0.3。每次更新kernel后用Vmware Workstation都要重新编译内核才能使用，可这次编译失败了。">
+<meta name="keywords" content="vmware,fedora,linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vmware内核编译失败">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/vmware-build-failed/index.html">
 <meta property="og:site_name" content="Chun&#39;s blog">
+<meta property="og:description" content="今天更新了Fedora的kernel,版本号为5.0.3-200.fc29.x86_64，Vmware Workstation版本号为15.0.3。每次更新kernel后用Vmware Workstation都要重新编译内核才能使用，可这次编译失败了。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-29T15:36:17.207Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chun&#39;s blog">
+<meta name="twitter:title" content="Vmware内核编译失败">
+<meta name="twitter:description" content="今天更新了Fedora的kernel,版本号为5.0.3-200.fc29.x86_64，Vmware Workstation版本号为15.0.3。每次更新kernel后用Vmware Workstation都要重新编译内核才能使用，可这次编译失败了。">
 
 
 
-<link rel="alternative" href="/atom.xml" title="Chun&#39;s blog" type="application/atom+xml">
+<link rel="alternative" href="/atom.xml" title="Vmware内核编译失败" type="application/atom+xml">
 
 
 
@@ -118,7 +123,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.jpg" alt="Chun&#39;s blog" height="28">
+                <img src="/images/logo.jpg" alt="Vmware内核编译失败" height="28">
             
             </a>
         </div>
@@ -166,35 +171,28 @@ var _hmt = _hmt || [];
             <div class="columns">
 
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">first post</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/2019/03/26/hello-world/" class="image is-7by1">
-            <img class="thumbnail" src="https://images.unsplash.com/photo-1546417492-3f58b4f55148?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1568&amp;q=80" alt="Hello World">
-        </a>
+        <span class="image is-7by1">
+            <img class="thumbnail" src="/images/vmware/vmware.png" alt="Vmware内核编译失败">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-25T16:00:01.000Z">2019-03-26</time>
+                <time class="level-item has-text-grey" datetime="2019-03-29T14:39:21.000Z">2019-03-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Vmware/">Vmware</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 122 个字)
+                    10 分钟 读完 (大约 1545 个字)
                 </span>
                 
                 
@@ -203,33 +201,130 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/03/26/hello-world/">Hello World</a>
+                Vmware内核编译失败
             
         </h1>
         <div class="content">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+            <p>今天更新了Fedora的kernel,版本号为<code>5.0.3-200.fc29.x86_64</code>，Vmware Workstation版本号为<code>15.0.3</code>。每次更新kernel后用Vmware Workstation都要重新编译内核才能使用，可这次编译失败了。</p>
+<a id="more"></a>
+<h1 id="查看log"><a href="#查看log" class="headerlink" title="查看log"></a>查看log</h1><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line">2019-03-29T20:25:36.780+08:00| host-17899| I125: Log for VMware Workstation pid=17899 version=15.0.3 build=build-12422535 option=Release</span><br><span class="line">2019-03-29T20:25:36.780+08:00| host-17899| I125: The process is 64-bit.</span><br><span class="line">2019-03-29T20:25:36.780+08:00| host-17899| I125: Host codepage=UTF-8 encoding=UTF-8</span><br><span class="line">2019-03-29T20:25:36.780+08:00| host-17899| I125: Host is Linux 5.0.3-200.fc29.x86_64 Fedora release 29 (Twenty Nine)</span><br><span class="line">2019-03-29T20:25:36.779+08:00| host-17899| I125: DictionaryLoad: Cannot open file &quot;/usr/lib/vmware/settings&quot;: No such file or directory.</span><br><span class="line">2019-03-29T20:25:36.779+08:00| host-17899| I125: [msg.dictionary.load.openFailed] Cannot open file &quot;/usr/lib/vmware/settings&quot;: No such file or directory.</span><br><span class="line">2019-03-29T20:25:36.779+08:00| host-17899| I125: PREF Optional preferences file not found at /usr/lib/vmware/settings. Using default values.</span><br><span class="line">2019-03-29T20:25:36.779+08:00| host-17899| I125: DictionaryLoad: Cannot open file &quot;/home/Jun/.vmware/config&quot;: No such file or directory.</span><br><span class="line">2019-03-29T20:25:36.779+08:00| host-17899| I125: [msg.dictionary.load.openFailed] Cannot open file &quot;/home/Jun/.vmware/config&quot;: No such file or directory.</span><br><span class="line">2019-03-29T20:25:36.779+08:00| host-17899| I125: PREF Optional preferences file not found at /home/Jun/.vmware/config. Using default values.</span><br><span class="line">2019-03-29T20:25:36.794+08:00| host-17899| W115: Logging to /tmp/vmware-root/vmware-17899.log</span><br><span class="line">2019-03-29T20:25:36.816+08:00| host-17899| I125: Obtaining info using the running kernel.</span><br><span class="line">2019-03-29T20:25:36.816+08:00| host-17899| I125: Created new pathsHash.</span><br><span class="line">2019-03-29T20:25:36.816+08:00| host-17899| I125: Setting header path for 5.0.3-200.fc29.x86_64 to &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot;.</span><br><span class="line">2019-03-29T20:25:36.816+08:00| host-17899| I125: Validating path &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot; for kernel release &quot;5.0.3-200.fc29.x86_64&quot;.</span><br><span class="line">2019-03-29T20:25:36.816+08:00| host-17899| I125: Failed to find /lib/modules/5.0.3-200.fc29.x86_64/build/include/linux/version.h</span><br><span class="line">2019-03-29T20:25:36.816+08:00| host-17899| I125: /lib/modules/5.0.3-200.fc29.x86_64/build/include/linux/version.h not found, looking for generated/uapi/linux/version.h instead.</span><br><span class="line">2019-03-29T20:25:36.816+08:00| host-17899| I125: using /usr/bin/gcc for preprocess check</span><br><span class="line">2019-03-29T20:25:36.824+08:00| host-17899| I125: Preprocessed UTS_RELEASE, got value &quot;5.0.3-200.fc29.x86_64&quot;.</span><br><span class="line">2019-03-29T20:25:36.824+08:00| host-17899| I125: The header path &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot; for the kernel &quot;5.0.3-200.fc29.x86_64&quot; is valid.  Whoohoo!</span><br><span class="line">2019-03-29T20:25:37.115+08:00| host-17899| I125: found symbol version file /lib/modules/5.0.3-200.fc29.x86_64/build/Module.symvers</span><br><span class="line">2019-03-29T20:25:37.115+08:00| host-17899| I125: Reading symbol versions from /lib/modules/5.0.3-200.fc29.x86_64/build/Module.symvers.</span><br><span class="line">2019-03-29T20:25:37.138+08:00| host-17899| I125: Read 20627 symbol versions</span><br><span class="line">2019-03-29T20:25:37.138+08:00| host-17899| I125: Reading in info for the vmmon module.</span><br><span class="line">2019-03-29T20:25:37.138+08:00| host-17899| I125: Reading in info for the vmnet module.</span><br><span class="line">2019-03-29T20:25:37.138+08:00| host-17899| I125: Reading in info for the vmci module.</span><br><span class="line">2019-03-29T20:25:37.138+08:00| host-17899| I125: Reading in info for the vsock module.</span><br><span class="line">2019-03-29T20:25:37.138+08:00| host-17899| I125: Setting vsock to depend on vmci.</span><br><span class="line">2019-03-29T20:25:37.138+08:00| host-17899| I125: Invoking modinfo on &quot;vmmon&quot;.</span><br><span class="line">2019-03-29T20:25:37.141+08:00| host-17899| I125: &quot;/sbin/modinfo&quot; exited with status 256.</span><br><span class="line">2019-03-29T20:25:37.141+08:00| host-17899| I125: Invoking modinfo on &quot;vmnet&quot;.</span><br><span class="line">2019-03-29T20:25:37.144+08:00| host-17899| I125: &quot;/sbin/modinfo&quot; exited with status 256.</span><br><span class="line">2019-03-29T20:25:37.144+08:00| host-17899| I125: Invoking modinfo on &quot;vmci&quot;.</span><br><span class="line">2019-03-29T20:25:37.147+08:00| host-17899| I125: &quot;/sbin/modinfo&quot; exited with status 256.</span><br><span class="line">2019-03-29T20:25:37.147+08:00| host-17899| I125: Invoking modinfo on &quot;vsock&quot;.</span><br><span class="line">2019-03-29T20:25:37.151+08:00| host-17899| I125: &quot;/sbin/modinfo&quot; exited with status 0.</span><br><span class="line">2019-03-29T20:25:37.165+08:00| host-17899| I125: to be installed: vmmon status: 0</span><br><span class="line">2019-03-29T20:25:37.165+08:00| host-17899| I125: to be installed: vmnet status: 0</span><br><span class="line">2019-03-29T20:25:37.181+08:00| host-17899| I125: Obtaining info using the running kernel.</span><br><span class="line">2019-03-29T20:25:37.181+08:00| host-17899| I125: Setting header path for 5.0.3-200.fc29.x86_64 to &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot;.</span><br><span class="line">2019-03-29T20:25:37.181+08:00| host-17899| I125: Validating path &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot; for kernel release &quot;5.0.3-200.fc29.x86_64&quot;.</span><br><span class="line">2019-03-29T20:25:37.181+08:00| host-17899| I125: Failed to find /lib/modules/5.0.3-200.fc29.x86_64/build/include/linux/version.h</span><br><span class="line">2019-03-29T20:25:37.181+08:00| host-17899| I125: /lib/modules/5.0.3-200.fc29.x86_64/build/include/linux/version.h not found, looking for generated/uapi/linux/version.h instead.</span><br><span class="line">2019-03-29T20:25:37.181+08:00| host-17899| I125: using /usr/bin/gcc for preprocess check</span><br><span class="line">2019-03-29T20:25:37.189+08:00| host-17899| I125: Preprocessed UTS_RELEASE, got value &quot;5.0.3-200.fc29.x86_64&quot;.</span><br><span class="line">2019-03-29T20:25:37.189+08:00| host-17899| I125: The header path &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot; for the kernel &quot;5.0.3-200.fc29.x86_64&quot; is valid.  Whoohoo!</span><br><span class="line">2019-03-29T20:25:37.485+08:00| host-17899| I125: found symbol version file /lib/modules/5.0.3-200.fc29.x86_64/build/Module.symvers</span><br><span class="line">2019-03-29T20:25:37.486+08:00| host-17899| I125: Reading symbol versions from /lib/modules/5.0.3-200.fc29.x86_64/build/Module.symvers.</span><br><span class="line">2019-03-29T20:25:37.506+08:00| host-17899| I125: Read 20627 symbol versions</span><br><span class="line">2019-03-29T20:25:37.510+08:00| host-17899| I125: Kernel header path retrieved from FileEntry: /lib/modules/5.0.3-200.fc29.x86_64/build/include</span><br><span class="line">2019-03-29T20:25:37.510+08:00| host-17899| I125: Update kernel header path to /lib/modules/5.0.3-200.fc29.x86_64/build/include</span><br><span class="line">2019-03-29T20:25:37.510+08:00| host-17899| I125: Validating path &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot; for kernel release &quot;5.0.3-200.fc29.x86_64&quot;.</span><br><span class="line">2019-03-29T20:25:37.510+08:00| host-17899| I125: Failed to find /lib/modules/5.0.3-200.fc29.x86_64/build/include/linux/version.h</span><br><span class="line">2019-03-29T20:25:37.510+08:00| host-17899| I125: /lib/modules/5.0.3-200.fc29.x86_64/build/include/linux/version.h not found, looking for generated/uapi/linux/version.h instead.</span><br><span class="line">2019-03-29T20:25:37.510+08:00| host-17899| I125: using /usr/bin/gcc for preprocess check</span><br><span class="line">2019-03-29T20:25:37.518+08:00| host-17899| I125: Preprocessed UTS_RELEASE, got value &quot;5.0.3-200.fc29.x86_64&quot;.</span><br><span class="line">2019-03-29T20:25:37.518+08:00| host-17899| I125: The header path &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot; for the kernel &quot;5.0.3-200.fc29.x86_64&quot; is valid.  Whoohoo!</span><br><span class="line">2019-03-29T20:25:37.520+08:00| host-17899| I125: Found compiler at &quot;/usr/bin/gcc&quot;</span><br><span class="line">2019-03-29T20:25:37.525+08:00| host-17899| I125: Got gcc version &quot;8&quot;.</span><br><span class="line">2019-03-29T20:25:37.525+08:00| host-17899| I125: The GCC version matches the kernel GCC minor version like a glove.</span><br><span class="line">2019-03-29T20:25:37.529+08:00| host-17899| I125: Got gcc version &quot;8&quot;.</span><br><span class="line">2019-03-29T20:25:37.529+08:00| host-17899| I125: The GCC version matches the kernel GCC minor version like a glove.</span><br><span class="line">2019-03-29T20:25:37.532+08:00| host-17899| I125: Trying to find a suitable PBM set for kernel &quot;5.0.3-200.fc29.x86_64&quot;.</span><br><span class="line">2019-03-29T20:25:37.532+08:00| host-17899| I125: No matching PBM set was found for kernel &quot;5.0.3-200.fc29.x86_64&quot;.</span><br><span class="line">2019-03-29T20:25:37.532+08:00| host-17899| I125: The GCC version matches the kernel GCC minor version like a glove.</span><br><span class="line">2019-03-29T20:25:37.532+08:00| host-17899| I125: Validating path &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot; for kernel release &quot;5.0.3-200.fc29.x86_64&quot;.</span><br><span class="line">2019-03-29T20:25:37.532+08:00| host-17899| I125: Failed to find /lib/modules/5.0.3-200.fc29.x86_64/build/include/linux/version.h</span><br><span class="line">2019-03-29T20:25:37.532+08:00| host-17899| I125: /lib/modules/5.0.3-200.fc29.x86_64/build/include/linux/version.h not found, looking for generated/uapi/linux/version.h instead.</span><br><span class="line">2019-03-29T20:25:37.532+08:00| host-17899| I125: using /usr/bin/gcc for preprocess check</span><br><span class="line">2019-03-29T20:25:37.540+08:00| host-17899| I125: Preprocessed UTS_RELEASE, got value &quot;5.0.3-200.fc29.x86_64&quot;.</span><br><span class="line">2019-03-29T20:25:37.540+08:00| host-17899| I125: The header path &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot; for the kernel &quot;5.0.3-200.fc29.x86_64&quot; is valid.  Whoohoo!</span><br><span class="line">2019-03-29T20:25:37.547+08:00| host-17899| I125: The GCC version matches the kernel GCC minor version like a glove.</span><br><span class="line">2019-03-29T20:25:37.547+08:00| host-17899| I125: Validating path &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot; for kernel release &quot;5.0.3-200.fc29.x86_64&quot;.</span><br><span class="line">2019-03-29T20:25:37.547+08:00| host-17899| I125: Failed to find /lib/modules/5.0.3-200.fc29.x86_64/build/include/linux/version.h</span><br><span class="line">2019-03-29T20:25:37.547+08:00| host-17899| I125: /lib/modules/5.0.3-200.fc29.x86_64/build/include/linux/version.h not found, looking for generated/uapi/linux/version.h instead.</span><br><span class="line">2019-03-29T20:25:37.547+08:00| host-17899| I125: using /usr/bin/gcc for preprocess check</span><br><span class="line">2019-03-29T20:25:37.555+08:00| host-17899| I125: Preprocessed UTS_RELEASE, got value &quot;5.0.3-200.fc29.x86_64&quot;.</span><br><span class="line">2019-03-29T20:25:37.555+08:00| host-17899| I125: The header path &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot; for the kernel &quot;5.0.3-200.fc29.x86_64&quot; is valid.  Whoohoo!</span><br><span class="line">2019-03-29T20:25:37.556+08:00| host-17899| I125: Using temp dir &quot;/tmp&quot;.</span><br><span class="line">2019-03-29T20:25:37.559+08:00| host-17899| I125: Obtaining info using the running kernel.</span><br><span class="line">2019-03-29T20:25:37.559+08:00| host-17899| I125: Setting header path for 5.0.3-200.fc29.x86_64 to &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot;.</span><br><span class="line">2019-03-29T20:25:37.559+08:00| host-17899| I125: Validating path &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot; for kernel release &quot;5.0.3-200.fc29.x86_64&quot;.</span><br><span class="line">2019-03-29T20:25:37.559+08:00| host-17899| I125: Failed to find /lib/modules/5.0.3-200.fc29.x86_64/build/include/linux/version.h</span><br><span class="line">2019-03-29T20:25:37.559+08:00| host-17899| I125: /lib/modules/5.0.3-200.fc29.x86_64/build/include/linux/version.h not found, looking for generated/uapi/linux/version.h instead.</span><br><span class="line">2019-03-29T20:25:37.559+08:00| host-17899| I125: using /usr/bin/gcc for preprocess check</span><br><span class="line">2019-03-29T20:25:37.567+08:00| host-17899| I125: Preprocessed UTS_RELEASE, got value &quot;5.0.3-200.fc29.x86_64&quot;.</span><br><span class="line">2019-03-29T20:25:37.567+08:00| host-17899| I125: The header path &quot;/lib/modules/5.0.3-200.fc29.x86_64/build/include&quot; for the kernel &quot;5.0.3-200.fc29.x86_64&quot; is valid.  Whoohoo!</span><br><span class="line">2019-03-29T20:25:37.861+08:00| host-17899| I125: found symbol version file /lib/modules/5.0.3-200.fc29.x86_64/build/Module.symvers</span><br><span class="line">2019-03-29T20:25:37.861+08:00| host-17899| I125: Reading symbol versions from /lib/modules/5.0.3-200.fc29.x86_64/build/Module.symvers.</span><br><span class="line">2019-03-29T20:25:37.882+08:00| host-17899| I125: Read 20627 symbol versions</span><br><span class="line">2019-03-29T20:25:37.882+08:00| host-17899| I125: Invoking modinfo on &quot;vmmon&quot;.</span><br><span class="line">2019-03-29T20:25:37.885+08:00| host-17899| I125: &quot;/sbin/modinfo&quot; exited with status 256.</span><br><span class="line">2019-03-29T20:25:37.885+08:00| host-17899| I125: Invoking modinfo on &quot;vmnet&quot;.</span><br><span class="line">2019-03-29T20:25:37.888+08:00| host-17899| I125: &quot;/sbin/modinfo&quot; exited with status 256.</span><br><span class="line">2019-03-29T20:25:37.974+08:00| host-17899| I125: Setting destination path for vmmon to &quot;/lib/modules/5.0.3-200.fc29.x86_64/misc/vmmon.ko&quot;.</span><br><span class="line">2019-03-29T20:25:37.974+08:00| host-17899| I125: Extracting the vmmon source from &quot;/usr/lib/vmware/modules/source/vmmon.tar&quot;.</span><br><span class="line">2019-03-29T20:25:37.987+08:00| host-17899| I125: Successfully extracted the vmmon source.</span><br><span class="line">2019-03-29T20:25:37.988+08:00| host-17899| I125: Building module with command &quot;/usr/bin/make -j4 -C /tmp/modconfig-5uwdM4/vmmon-only auto-build HEADER_DIR=/lib/modules/5.0.3-200.fc29.x86_64/build/include CC=/usr/bin/gcc IS_GCC_3=no&quot;</span><br><span class="line">2019-03-29T20:25:40.335+08:00| host-17899| W115: Failed to build vmmon.  Failed to execute the build command.</span><br><span class="line">2019-03-29T20:25:40.337+08:00| host-17899| I125: Setting destination path for vmnet to &quot;/lib/modules/5.0.3-200.fc29.x86_64/misc/vmnet.ko&quot;.</span><br><span class="line">2019-03-29T20:25:40.337+08:00| host-17899| I125: Extracting the vmnet source from &quot;/usr/lib/vmware/modules/source/vmnet.tar&quot;.</span><br><span class="line">2019-03-29T20:25:40.344+08:00| host-17899| I125: Successfully extracted the vmnet source.</span><br><span class="line">2019-03-29T20:25:40.344+08:00| host-17899| I125: Building module with command &quot;/usr/bin/make -j4 -C /tmp/modconfig-5uwdM4/vmnet-only auto-build HEADER_DIR=/lib/modules/5.0.3-200.fc29.x86_64/build/include CC=/usr/bin/gcc IS_GCC_3=no&quot;</span><br><span class="line">2019-03-29T20:25:42.697+08:00| host-17899| W115: Failed to build vmnet.  Failed to execute the build command.</span><br></pre></td></tr></table></figure>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>在github上的一个repositorie是给vmware打补丁的，<a href="https://github.com/mkubecek/vmware-host-modules" target="_blank" rel="noopener">mkubecek/vmware-host-modules</a>。</p>
+<ol>
+<li><p>先克隆下来</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># workstation 15.0.3</span></span><br><span class="line">git <span class="hljs-built_in">clone</span> https://github.com/mkubecek/vmware-host-modules.git -b <span class="hljs-string">'workstation-15.0.3'</span></span><br><span class="line"><span class="hljs-comment"># or player, use this</span></span><br><span class="line">git <span class="hljs-built_in">clone</span> https://github.com/mkubecek/vmware-host-modules.git -b <span class="hljs-string">'player-&lt;version&gt;'</span></span><br><span class="line"><span class="hljs-comment"># other version, like this</span></span><br><span class="line">git <span class="hljs-built_in">clone</span> https://github.com/mkubecek/vmware-host-modules.git -b <span class="hljs-string">'workstation-&lt;version&gt;'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译并安装</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">cd</span> vmware-host-modules</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装完后运行Vmware workstation,让它删除旧模组后重新启动服务就OK了。</p>
+</li>
+</ol>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/26/hello-world/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/fedora/">fedora</a>, <a class="has-link-grey -link" href="/tags/linux/">linux</a>, <a class="has-link-grey -link" href="/tags/vmware/">vmware</a>
                 </div>
             </div>
         </div>
         
+        
+        
+         
+<div class="social-share" style="text-align: center">
+    <h3 class="menu-label has-text-centered">❤ Share this page ❤</h3>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+<script>
+    var $config = {
+        sites: ["qzone","qq","weibo","wechat","google","facebook","twitter"], // 启用的站点
+        disabled: [null], // 禁用的站点
+        // 
+        //     wechatQrcodeTitle: '微信扫一扫：分享', // 微信二维码提示文字
+        // 
+        // 
+    }
+    socialShare('.social-share', $config);
+</script>
+
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？请作者喝杯咖啡吧❤</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>剁手用的</span>
+    <div class="qrcode"><img src="http://wx1.sinaimg.cn/mw690/a617e55cgy1g1ff5a46xgj20o011cn2v.jpg" alt="剁手用的"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>吃饭用的</span>
+    <div class="qrcode"><img src="http://wx1.sinaimg.cn/large/a617e55cgy1g1ff59m67xj20u011vtbk.jpg" alt="吃饭用的"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/03/26/cloud-widget/">
+                <span class="level-item">网易云播放器小部件</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.4.1/gitalk.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.4.1/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '2059dc6d03d039d4dc1d',
+        clientSecret: 'e6488bef218f02522de5eab24b090639e5ae576b',
+        id: '1e016f5275fdb3ede42578cd6c2537e9',
+        repo: 'GaaChun.github.io',
+        owner: 'GaaChun',
+        admin: ["GaaChun"]
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
 </div>
                 
 
@@ -784,7 +879,7 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.jpg" alt="Chun&#39;s blog" height="28">
+                    <img src="/images/logo.jpg" alt="Vmware内核编译失败" height="28">
                 
                 </a>
                 <p class="is-size-7">
