@@ -3,22 +3,27 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>标签: linux - Chun&#39;s blog</title>
+<title>用Docker部署一个PHP环境 - Chun&#39;s blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Chun&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/linux/index.html">
+    <meta name="description" content="我喜欢Docker，它那容器服务的方式使我部署生产环境方便了好几倍，仅需要在本机上做好Dockerfile等配置文件，在服务器上执行就能得到统一的环境；当容器服务出错挂掉的时候也有重启服务，极大解决了环境部署的工作。在近日开始做PHP的工程，虽然有LAMP/LNAMP等环境给我选择，作为一个Docker死忠粉，决定用Docker部署一个PHP的生产环境。">
+<meta name="keywords" content="docker,php,linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Docker部署一个PHP环境">
+<meta property="og:url" content="http://yoursite.com/2019/04/18/docker-php-env/index.html">
 <meta property="og:site_name" content="Chun&#39;s blog">
+<meta property="og:description" content="我喜欢Docker，它那容器服务的方式使我部署生产环境方便了好几倍，仅需要在本机上做好Dockerfile等配置文件，在服务器上执行就能得到统一的环境；当容器服务出错挂掉的时候也有重启服务，极大解决了环境部署的工作。在近日开始做PHP的工程，虽然有LAMP/LNAMP等环境给我选择，作为一个Docker死忠粉，决定用Docker部署一个PHP的生产环境。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-18T06:21:33.136Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chun&#39;s blog">
+<meta name="twitter:title" content="用Docker部署一个PHP环境">
+<meta name="twitter:description" content="我喜欢Docker，它那容器服务的方式使我部署生产环境方便了好几倍，仅需要在本机上做好Dockerfile等配置文件，在服务器上执行就能得到统一的环境；当容器服务出错挂掉的时候也有重启服务，极大解决了环境部署的工作。在近日开始做PHP的工程，虽然有LAMP/LNAMP等环境给我选择，作为一个Docker死忠粉，决定用Docker部署一个PHP的生产环境。">
 
 
 
-<link rel="alternative" href="/atom.xml" title="Chun&#39;s blog" type="application/atom+xml">
+<link rel="alternative" href="/atom.xml" title="用Docker部署一个PHP环境" type="application/atom+xml">
 
 
 
@@ -118,7 +123,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.jpg" alt="Chun&#39;s blog" height="28">
+                <img src="/images/logo.jpg" alt="用Docker部署一个PHP环境" height="28">
             
             </a>
         </div>
@@ -166,22 +171,11 @@ var _hmt = _hmt || [];
             <div class="columns">
 
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">linux</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/2019/04/18/docker-php-env/" class="image is-7by1">
+        <span class="image is-7by1">
             <img class="thumbnail" src="/images/docker-php.jpg" alt="用Docker部署一个PHP环境">
-        </a>
+        </span>
     </div>
     
     <div class="card-content article ">
@@ -207,91 +201,128 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/04/18/docker-php-env/">用Docker部署一个PHP环境</a>
+                用Docker部署一个PHP环境
             
         </h1>
         <div class="content">
-            <p>我喜欢Docker，它那容器服务的方式使我部署生产环境方便了好几倍，仅需要在本机上做好Dockerfile等配置文件，在服务器上执行就能得到统一的环境；当容器服务出错挂掉的时候也有重启服务，极大解决了环境部署的工作。在近日开始做PHP的工程，虽然有LAMP/LNAMP等环境给我选择，作为一个Docker死忠粉，决定用Docker部署一个PHP的生产环境。<br></p>
+            <p>我喜欢Docker，它那容器服务的方式使我部署生产环境方便了好几倍，仅需要在本机上做好Dockerfile等配置文件，在服务器上执行就能得到统一的环境；当容器服务出错挂掉的时候也有重启服务，极大解决了环境部署的工作。在近日开始做PHP的工程，虽然有LAMP/LNAMP等环境给我选择，作为一个Docker死忠粉，决定用Docker部署一个PHP的生产环境。<br><a id="more"></a></p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>决定好需要使用的容器，在本文选择了<code>mysql:5.7</code>、<code>phpmyadmin:phpmyadmin</code>、<code>php:7.3-fpm</code>、<code>nginx:latest</code>这4个镜像。</p>
+<blockquote>
+<p><code>php:7.3-fpm</code> 用php-fpm配合Nginx的fastcgi使用。<br><code>phpmyadmin:phpmyadmin</code> 管理mysql用的工具。<br><code>nginx:latest</code> 转发代理用。<br><code>mysql:5.7</code> MySQL服务器。</p>
+</blockquote>
+<h1 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h1><blockquote>
+<p>MySQL/<br>&emsp;|-logs/<br>&emsp;|-data/<br>&emsp;|-Dockerfile<br>Nginx/<br>&emsp;|-conf<br>&emsp;&emsp;|-nginx.conf<br>&emsp;&emsp;|-fastcgi_params<br>&emsp;&emsp;|-fastcgi.conf<br>&emsp;|-Dockerfile<br>phpMyAdmin/<br>&emsp;|-Dockerfile<br>src/<br>&emsp;|-index.php<br>docker-compose.yml<br>Dockerfile</p>
+</blockquote>
+<p><code>Dockerfile</code>为Docker镜像构建文件，按照Docker的一个容器对应一个服务的约束，每一个服务都建设一个镜像。其中最外层的为<code>php-fpm</code>容器的构建文件。<br><code>docker-compose.yml</code>为docker-compose用到的文件，一次配置并部署四个容器。<br>MySQL目录下包含的为MySQL的日志、数据。Nginx目录下的conf为Nginx配置文件夹。src为静态文件及php文件的路径</p>
+<h1 id="上手工作"><a href="#上手工作" class="headerlink" title="上手工作"></a>上手工作</h1><p>首先编写最复杂的php-fpm的Dockerfile。<br><figure class="highlight dockerfile hljs"><figcaption><span>Dockerfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">FROM</span> php:<span class="hljs-number">7.3</span>-fpm</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">RUN</span><span class="hljs-bash"> apt-get update &amp;&amp; apt-get install -yq --no-install-recommends \</span></span><br><span class="line"><span class="hljs-bash">    git \</span></span><br><span class="line"><span class="hljs-bash">    libfreetype6-dev \</span></span><br><span class="line"><span class="hljs-bash">    libjpeg62-turbo-dev \</span></span><br><span class="line"><span class="hljs-bash">    libpng-dev \</span></span><br><span class="line"><span class="hljs-bash">    libzip-dev \</span></span><br><span class="line"><span class="hljs-bash">    &amp;&amp; docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \</span></span><br><span class="line"><span class="hljs-bash">    &amp;&amp; docker-php-ext-install -j$(nproc) gd \</span></span><br><span class="line"><span class="hljs-bash">    &amp;&amp; docker-php-ext-install zip \</span></span><br><span class="line"><span class="hljs-bash">    &amp;&amp; docker-php-ext-install pdo_mysql \</span></span><br><span class="line"><span class="hljs-bash">    &amp;&amp; docker-php-ext-install opcache \</span></span><br><span class="line"><span class="hljs-bash">    &amp;&amp; docker-php-ext-install mysqli \</span></span><br><span class="line"><span class="hljs-bash">    &amp;&amp; apt-get clean \</span></span><br><span class="line"><span class="hljs-bash">    &amp;&amp; rm -r /var/lib/apt/lists/*</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">ENV</span> TIMEZONE Asia/Shanghai</span><br><span class="line"><span class="hljs-keyword">RUN</span><span class="hljs-bash"> ln -snf /usr/share/zoneinfo/<span class="hljs-variable">$TIMEZONE</span> /etc/localtime &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$TIMEZONE</span> &gt; /etc/timezone</span></span><br></pre></td></tr></table></figure><br>其他的容器也得统一时区，于是都写了一个Dockerfile用于在构建镜像的时候完成修改时区操作。用Nginx的Dockerfile作为例子。<br><figure class="highlight dockerfile hljs"><figcaption><span>Dockerfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">FROM</span> nginx:latest</span><br><span class="line"><span class="hljs-keyword">ENV</span> TIMEZONE Asia/Shanghai</span><br><span class="line"><span class="hljs-keyword">RUN</span><span class="hljs-bash"> ln -snf /usr/share/zoneinfo/<span class="hljs-variable">$TIMEZONE</span> /etc/localtime &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$TIMEZONE</span> &gt; /etc/timezone</span></span><br></pre></td></tr></table></figure><br>最重要的部分—编写大杀器docker-compose的配置文件<br><figure class="highlight yaml hljs"><figcaption><span>docker-compose.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">version:</span> <span class="hljs-string">'3.6'</span></span><br><span class="line"><span class="hljs-attr">services:</span></span><br><span class="line"><span class="hljs-attr">  php-fpm:</span></span><br><span class="line"><span class="hljs-attr">    build:</span> <span class="hljs-string">.</span></span><br><span class="line"><span class="hljs-attr">    volumes:</span> </span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">./src:/data/www:rw</span></span><br><span class="line"><span class="hljs-attr">    links:</span> </span><br><span class="line"><span class="hljs-attr">      - db:</span><span class="hljs-string">db</span></span><br><span class="line"><span class="hljs-attr">    restart:</span> <span class="hljs-string">always</span></span><br><span class="line"><span class="hljs-attr">  nginx:</span></span><br><span class="line"><span class="hljs-attr">    build:</span> <span class="hljs-string">./Nginx</span></span><br><span class="line"><span class="hljs-attr">    depends_on:</span> </span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">phpmyadmin</span></span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">php-fpm</span></span><br><span class="line"><span class="hljs-attr">    links:</span> </span><br><span class="line"><span class="hljs-attr">      - php-fpm:</span><span class="hljs-string">php-fpm</span></span><br><span class="line"><span class="hljs-attr">      - phpmyadmin:</span><span class="hljs-string">phpmyadmin</span></span><br><span class="line"><span class="hljs-attr">    volumes:</span> </span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">./Nginx/logs:/etc/nginx/logs:rw</span></span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">./Nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro</span></span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">./Nginx/conf/fastcgi.conf:/etc/nginx/fastcgi.conf:ro</span></span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">./Nginx/conf/fastcgi_params:/etc/nginx/fastcgi_params:ro</span></span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">./src:/data/www:rw</span></span><br><span class="line"><span class="hljs-attr">    ports:</span> </span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">"8081:80"</span></span><br><span class="line"><span class="hljs-attr">    command:</span> <span class="hljs-string">nginx</span> <span class="hljs-bullet">-g</span> <span class="hljs-string">'daemon off;'</span></span><br><span class="line"><span class="hljs-attr">  db:</span></span><br><span class="line"><span class="hljs-attr">    build:</span> <span class="hljs-string">./MySQL</span></span><br><span class="line"><span class="hljs-attr">    volumes:</span></span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">./MySQL/data:/var/lib/mysql:rw</span></span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">./MySQL/logs:/var/lib/mysql-logs:rw</span></span><br><span class="line"><span class="hljs-attr">    environment:</span></span><br><span class="line"><span class="hljs-attr">      MYSQL_ROOT_PASSWORD:</span> <span class="hljs-string">rootpass</span></span><br><span class="line"><span class="hljs-attr">    command:</span> <span class="hljs-string">"--character-set-server=utf8"</span></span><br><span class="line"><span class="hljs-attr">  phpmyadmin:</span></span><br><span class="line"><span class="hljs-attr">    build:</span> <span class="hljs-string">./phpMyAdmin</span></span><br><span class="line"><span class="hljs-attr">    ports:</span> </span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">"8082:80"</span></span><br><span class="line"><span class="hljs-attr">    links:</span> </span><br><span class="line"><span class="hljs-attr">      - db:</span><span class="hljs-string">db</span></span><br><span class="line"><span class="hljs-attr">    depends_on:</span> </span><br><span class="line"><span class="hljs-bullet">      -</span> <span class="hljs-string">db</span></span><br><span class="line"><span class="hljs-attr">    environment:</span></span><br><span class="line"><span class="hljs-attr">      PMA_HOST:</span> <span class="hljs-string">db</span></span><br><span class="line"><span class="hljs-attr">      PMA_PORT:</span> <span class="hljs-number">3306</span></span><br></pre></td></tr></table></figure><br>最后，用<code>docker-compose up</code>运行准备好的环境～<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">Starting php-docker-env_db_1 ... <span class="hljs-keyword">done</span></span><br><span class="line">Starting php-docker-env_php-fpm_1    ... <span class="hljs-keyword">done</span></span><br><span class="line">Starting php-docker-env_phpmyadmin_1 ... <span class="hljs-keyword">done</span></span><br><span class="line">Starting php-docker-env_nginx_1      ... <span class="hljs-keyword">done</span></span><br><span class="line">Attaching to php-docker-env_db_1, php-docker-env_php-fpm_1, php-docker-env_phpmyadmin_1, php-docker-env_nginx_1</span><br><span class="line">php-fpm_1     | [18-Apr-2019 14:07:20] NOTICE: fpm is running, pid 1</span><br><span class="line">db_1          | 2019-04-18T06:07:19.643459Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation <span class="hljs-keyword">for</span> more details).</span><br><span class="line">db_1          | 2019-04-18T06:07:19.645639Z 0 [Note] mysqld (mysqld 5.7.24) starting as process 1 ...</span><br><span class="line">php-fpm_1     | [18-Apr-2019 14:07:20] NOTICE: ready to handle connections</span><br><span class="line">phpmyadmin_1  | /usr/lib/python2.7/site-packages/supervisor/options.py:461: UserWarning: Supervisord is running as root and it is searching <span class="hljs-keyword">for</span> its configuration file <span class="hljs-keyword">in</span> default locations (including its current working directory); you probably want to specify a <span class="hljs-string">"-c"</span> argument specifying an absolute path to a configuration file <span class="hljs-keyword">for</span> improved security.</span><br><span class="line">phpmyadmin_1  |   <span class="hljs-string">'Supervisord is running as root and it is searching '</span></span><br><span class="line">phpmyadmin_1  | 2019-04-18 06:07:20,660 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified <span class="hljs-keyword">in</span> the config file.  If you intend to run as root, you can <span class="hljs-built_in">set</span> user=root <span class="hljs-keyword">in</span> the config file to avoid this message.</span><br><span class="line">phpmyadmin_1  | 2019-04-18 06:07:20,660 INFO Included extra file <span class="hljs-string">"/etc/supervisor.d/nginx.ini"</span> during parsing</span><br><span class="line">db_1          | 2019-04-18T06:07:19.651967Z 0 [Note] InnoDB: PUNCH HOLE support available</span><br><span class="line">db_1          | 2019-04-18T06:07:19.651994Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins</span><br><span class="line">db_1          | 2019-04-18T06:07:19.652000Z 0 [Note] InnoDB: Uses event mutexes</span><br><span class="line">db_1          | 2019-04-18T06:07:19.652006Z 0 [Note] InnoDB: GCC <span class="hljs-built_in">builtin</span> __atomic_thread_fence() is used <span class="hljs-keyword">for</span> memory barrier</span><br><span class="line">db_1          | 2019-04-18T06:07:19.652012Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.11</span><br><span class="line">db_1          | 2019-04-18T06:07:19.652017Z 0 [Note] InnoDB: Using Linux native AIO</span><br><span class="line">db_1          | 2019-04-18T06:07:19.652399Z 0 [Note] InnoDB: Number of pools: 1</span><br><span class="line">db_1          | 2019-04-18T06:07:19.652542Z 0 [Note] InnoDB: Using CPU crc32 instructions</span><br><span class="line">db_1          | 2019-04-18T06:07:19.654856Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M</span><br><span class="line">db_1          | 2019-04-18T06:07:19.672218Z 0 [Note] InnoDB: Completed initialization of buffer pool</span><br><span class="line">phpmyadmin_1  | 2019-04-18 06:07:20,660 INFO Included extra file <span class="hljs-string">"/etc/supervisor.d/php.ini"</span> during parsing</span><br><span class="line">db_1          | 2019-04-18T06:07:19.675293Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>看到这些初始化报告就代表环境已经部署好了～可以愉快的开发php了～先来写个简单的<code>Hello World</code>吧～在src的目录下创建index.php然后写入以下代码。<br><figure class="highlight php hljs"><figcaption><span>index.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?php</span></span><br><span class="line"><span class="hljs-keyword">echo</span> <span class="hljs-string">'Hello World'</span>;</span><br></pre></td></tr></table></figure><br>本文部署的服务器端口为8081，访问<code>http://localhost:8081/</code>就可以看见输出一个<code>Hello World</code>在页面了。</p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>项目已经传到Github上了，<a href="https://github.com/GaaChun/docker-php-env" target="_blank" rel="noopener">点我查看项目</a>，欢迎大佬Fork一个/点一下Star/提交Issuse～</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/04/18/docker-php-env/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/docker/">docker</a>, <a class="has-link-grey -link" href="/tags/linux/">linux</a>, <a class="has-link-grey -link" href="/tags/php/">php</a>
                 </div>
             </div>
         </div>
         
+        
+        
+         
+<div class="social-share" style="text-align: center">
+    <h3 class="menu-label has-text-centered">❤ Share this page ❤</h3>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+<script>
+    var $config = {
+        sites: ["qzone","qq","weibo","wechat","google","facebook","twitter"], // 启用的站点
+        disabled: [null], // 禁用的站点
+        // 
+        //     wechatQrcodeTitle: '微信扫一扫：分享', // 微信二维码提示文字
+        // 
+        // 
+    }
+    socialShare('.social-share', $config);
+</script>
+
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？请作者喝杯咖啡吧❤</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>剁手用的</span>
+    <div class="qrcode"><img src="http://wx1.sinaimg.cn/mw690/a617e55cgy1g1ff5a46xgj20o011cn2v.jpg" alt="剁手用的"></div>
+</a>
 
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>吃饭用的</span>
+    <div class="qrcode"><img src="http://wx1.sinaimg.cn/large/a617e55cgy1g1ff59m67xj20u011vtbk.jpg" alt="吃饭用的"></div>
+</a>
 
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/03/29/vmware-build-failed/" class="image is-7by1">
-            <img class="thumbnail" src="/images/vmware/vmware.png" alt="Vmware内核编译失败">
-        </a>
+                
+        </div>
     </div>
-    
-    <div class="card-content article ">
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-29T14:39:21.000Z">2019-03-29</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Vmware/">Vmware</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    10 分钟 读完 (大约 1545 个字)
-                </span>
-                
-                
-            </div>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/03/29/vmware-build-failed/">
+                <span class="level-item">Vmware内核编译失败</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/03/29/vmware-build-failed/">Vmware内核编译失败</a>
-            
-        </h1>
-        <div class="content">
-            <p>今天更新了Fedora的kernel,版本号为<code>5.0.3-200.fc29.x86_64</code>，Vmware Workstation版本号为<code>15.0.3</code>。每次更新kernel后用Vmware Workstation都要重新编译内核才能使用，可这次编译失败了。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/29/vmware-build-failed/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.4.1/gitalk.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.4.1/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '2059dc6d03d039d4dc1d',
+        clientSecret: 'e6488bef218f02522de5eab24b090639e5ae576b',
+        id: '3a9a1cf0e985147ec87074be631eb8e1',
+        repo: 'GaaChun.github.io',
+        owner: 'GaaChun',
+        admin: ["GaaChun"]
+    })
+    gitalk.render('comment-container')
+</script>
 
-
-
-
-
+    </div>
+</div>
 </div>
                 
 
@@ -942,7 +973,7 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.jpg" alt="Chun&#39;s blog" height="28">
+                    <img src="/images/logo.jpg" alt="用Docker部署一个PHP环境" height="28">
                 
                 </a>
                 <p class="is-size-7">
