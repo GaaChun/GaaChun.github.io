@@ -469,6 +469,75 @@ var _hmt = _hmt || [];
             
         
             
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                计时墙
+            </h3>
+            <div class="content">
+                <p>跟我悄悄喜欢了快七年的人现在正式在一起了❤</p>
+                <div name="timer">
+                    已经经过了
+                    <span class="nums"></span>
+                    年
+                    <span class="nums"></span>
+                    月
+                    <span class="nums"></span>
+                    日
+                    <span class="nums"></span>
+                    小时
+                    <span class="nums"></span>
+                    分钟
+                    <span class="nums"></span>
+                    秒
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .nums {
+            font-size: large;
+            color: #3273dc;
+        }
+    </style>
+    <script>
+        (function () {
+            setInterval('updateTime()', 1000);
+        })()
+        function updateTime() {
+            var list = document.getElementsByName('timer')
+            for (var i in list) {
+                var div = list[i];
+                var timerViews = div.children;
+                var begin_time = new Date('2019/06/22 00:00:00');
+                // var oneDay = 1000 * 60 * 60 * 24;
+                var now = new Date();
+                // now = now - oneDay;
+                // now = new Date(now);
+                var diff = now - begin_time;
+                var year = now.getFullYear() - begin_time.getFullYear();
+                var month = (now.getMonth() - begin_time.getMonth());
+                var day = Math.floor(diff / 1000 / 60 / 60 / 24);
+                var hour = Math.floor(diff / 1000 / 60 / 60 - (24 * day));
+                var minute = Math.floor(diff / 1000 / 60 - (24 * 60 * day) - (60 * hour));
+                var second = Math.floor(diff / 1000 - (60 * minute) - (24 * 60 * 60 * day) - (60 * 60 * hour));
+                if(typeof(timerViews)!="undefined"){
+                    timerViews[0].innerHTML = year;
+                    timerViews[1].innerHTML = month;
+                    timerViews[2].innerHTML = day;
+                    timerViews[3].innerHTML = hour;
+                    timerViews[4].innerHTML = minute;
+                    timerViews[5].innerHTML = second;
+                }
+            }
+        }
+    </script>
+</div>
+
+        
+            
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
@@ -683,6 +752,75 @@ var _hmt = _hmt || [];
 <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
     
         
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                计时墙
+            </h3>
+            <div class="content">
+                <p>跟我悄悄喜欢了快七年的人现在正式在一起了❤</p>
+                <div name="timer">
+                    已经经过了
+                    <span class="nums"></span>
+                    年
+                    <span class="nums"></span>
+                    月
+                    <span class="nums"></span>
+                    日
+                    <span class="nums"></span>
+                    小时
+                    <span class="nums"></span>
+                    分钟
+                    <span class="nums"></span>
+                    秒
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .nums {
+            font-size: large;
+            color: #3273dc;
+        }
+    </style>
+    <script>
+        (function () {
+            setInterval('updateTime()', 1000);
+        })()
+        function updateTime() {
+            var list = document.getElementsByName('timer')
+            for (var i in list) {
+                var div = list[i];
+                var timerViews = div.children;
+                var begin_time = new Date('2019/06/22 00:00:00');
+                // var oneDay = 1000 * 60 * 60 * 24;
+                var now = new Date();
+                // now = now - oneDay;
+                // now = new Date(now);
+                var diff = now - begin_time;
+                var year = now.getFullYear() - begin_time.getFullYear();
+                var month = (now.getMonth() - begin_time.getMonth());
+                var day = Math.floor(diff / 1000 / 60 / 60 / 24);
+                var hour = Math.floor(diff / 1000 / 60 / 60 - (24 * day));
+                var minute = Math.floor(diff / 1000 / 60 - (24 * 60 * day) - (60 * hour));
+                var second = Math.floor(diff / 1000 - (60 * minute) - (24 * 60 * 60 * day) - (60 * 60 * hour));
+                if(typeof(timerViews)!="undefined"){
+                    timerViews[0].innerHTML = year;
+                    timerViews[1].innerHTML = month;
+                    timerViews[2].innerHTML = day;
+                    timerViews[3].innerHTML = hour;
+                    timerViews[4].innerHTML = minute;
+                    timerViews[5].innerHTML = second;
+                }
+            }
+        }
+    </script>
+</div>
+
     
         
 <div class="card widget">
