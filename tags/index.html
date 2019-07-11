@@ -495,17 +495,30 @@ var _hmt = _hmt || [];
                 var div = list[i];
                 var timerViews = div.children;
                 var begin_time = new Date('2019/06/22 00:00:00');
-                // var oneDay = 1000 * 60 * 60 * 24;
                 var now = new Date();
-                // now = now - oneDay;
-                // now = new Date(now);
-                var diff = now - begin_time;
-                var year = now.getFullYear() - begin_time.getFullYear();
-                var month = (now.getMonth() - begin_time.getMonth());
-                var day = Math.floor(diff / 1000 / 60 / 60 / 24);
-                var hour = Math.floor(diff / 1000 / 60 / 60 - (24 * day));
-                var minute = Math.floor(diff / 1000 / 60 - (24 * 60 * day) - (60 * hour));
-                var second = Math.floor(diff / 1000 - (60 * minute) - (24 * 60 * 60 * day) - (60 * 60 * hour));
+
+                var diff = (now - begin_time) / 1000;
+                
+                // 86400 = 24 hours * 60 minute * 60 second
+                // Means how many seconds a day.
+                var year = Math.floor(diff / 86400 / 365);
+                diff %= 86400 * 365;
+                var month = Math.floor(diff / 86400 / 30);
+                diff %= 86400 * 30;
+                var day = Math.floor(diff / 86400);
+                diff %= 86400;
+                var hour = Math.floor(diff / 3600);
+                diff = diff % 3600;
+                var minute = Math.floor(diff / 60);
+                diff = diff % 60;
+                var second = diff;
+
+                // var year = now.getFullYear() - begin_time.getFullYear();
+                // var month = (now.getMonth() - begin_time.getMonth());
+                // var day = Math.floor(diff / 1000 / 60 / 60 / 24);
+                // var hour = Math.floor(diff / 1000 / 60 / 60 - (24 * day));
+                // var minute = Math.floor(diff / 1000 / 60 - (24 * 60 * day) - (60 * hour));
+                // var second = Math.floor(diff / 1000 - (60 * minute) - (24 * 60 * 60 * day) - (60 * 60 * hour));
                 if(typeof(timerViews)!="undefined"){
                     timerViews[0].innerHTML = year;
                     timerViews[1].innerHTML = month;
@@ -780,17 +793,30 @@ var _hmt = _hmt || [];
                 var div = list[i];
                 var timerViews = div.children;
                 var begin_time = new Date('2019/06/22 00:00:00');
-                // var oneDay = 1000 * 60 * 60 * 24;
                 var now = new Date();
-                // now = now - oneDay;
-                // now = new Date(now);
-                var diff = now - begin_time;
-                var year = now.getFullYear() - begin_time.getFullYear();
-                var month = (now.getMonth() - begin_time.getMonth());
-                var day = Math.floor(diff / 1000 / 60 / 60 / 24);
-                var hour = Math.floor(diff / 1000 / 60 / 60 - (24 * day));
-                var minute = Math.floor(diff / 1000 / 60 - (24 * 60 * day) - (60 * hour));
-                var second = Math.floor(diff / 1000 - (60 * minute) - (24 * 60 * 60 * day) - (60 * 60 * hour));
+
+                var diff = (now - begin_time) / 1000;
+                
+                // 86400 = 24 hours * 60 minute * 60 second
+                // Means how many seconds a day.
+                var year = Math.floor(diff / 86400 / 365);
+                diff %= 86400 * 365;
+                var month = Math.floor(diff / 86400 / 30);
+                diff %= 86400 * 30;
+                var day = Math.floor(diff / 86400);
+                diff %= 86400;
+                var hour = Math.floor(diff / 3600);
+                diff = diff % 3600;
+                var minute = Math.floor(diff / 60);
+                diff = diff % 60;
+                var second = diff;
+
+                // var year = now.getFullYear() - begin_time.getFullYear();
+                // var month = (now.getMonth() - begin_time.getMonth());
+                // var day = Math.floor(diff / 1000 / 60 / 60 / 24);
+                // var hour = Math.floor(diff / 1000 / 60 / 60 - (24 * day));
+                // var minute = Math.floor(diff / 1000 / 60 - (24 * 60 * day) - (60 * hour));
+                // var second = Math.floor(diff / 1000 - (60 * minute) - (24 * 60 * 60 * day) - (60 * 60 * hour));
                 if(typeof(timerViews)!="undefined"){
                     timerViews[0].innerHTML = year;
                     timerViews[1].innerHTML = month;
