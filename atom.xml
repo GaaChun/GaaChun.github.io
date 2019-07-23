@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-18T06:21:33.136Z</updated>
+  <updated>2019-07-23T19:35:15.964Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker的exec命令无法在cron运行的问题</title>
+    <link href="http://yoursite.com/2019/07/24/docker-exec-not-working-in-cron/"/>
+    <id>http://yoursite.com/2019/07/24/docker-exec-not-working-in-cron/</id>
+    <published>2019-07-23T19:05:57.000Z</published>
+    <updated>2019-07-23T19:35:15.964Z</updated>
+    
+    <content type="html"><![CDATA[<p>因工作需求，在服务器的docker上部署的Mysql容器需要定时备份数据。于是在宿主机上写上了一个crontab，但是运行时没有报错，输出的文件大小为0。</p><a id="more"></a><h1 id="备份脚本"><a href="#备份脚本" class="headerlink" title="备份脚本"></a>备份脚本</h1><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#!/bin/sh</span></span><br><span class="line">BACKUP_DIR=/root/Server/Mysql/backup</span><br><span class="line">TMP_DIR=/tmp/Mysql</span><br><span class="line">docker <span class="hljs-built_in">exec</span> -it dbc14c8c6660 mysqldump -uroot -pPASSWORD my_database &gt; <span class="hljs-variable">$TMP_DIR</span>/my_database.sql</span><br><span class="line"><span class="hljs-comment"># Delete first row</span></span><br><span class="line"><span class="hljs-comment"># Mysql Warning</span></span><br><span class="line">sed -i <span class="hljs-string">'1d'</span> <span class="hljs-variable">$TMP_DIR</span>/my_database.sql</span><br><span class="line"></span><br><span class="line">tar -zcf <span class="hljs-string">"<span class="hljs-variable">$BACKUP_DIR</span>/<span class="hljs-variable">$(date '+%Y-%m-%d_%H%M%S')</span>-my_database.tar.gz"</span>  -C <span class="hljs-variable">$TMP_DIR</span> my_database.sql</span><br><span class="line">rm -f <span class="hljs-variable">$TMP_DIR</span>/my_database.sql</span><br></pre></td></tr></table></figure><h1 id="查看log"><a href="#查看log" class="headerlink" title="查看log"></a>查看log</h1><p>执行<code>cat /var/log/cron</code>查看cron的执行状态<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Jul 24 02:57:01 Server CROND[3646]: (root) MAIL (mailed 60 bytes of output but got status 0x004b#012)</span><br><span class="line">Jul 24 02:58:01 Server CROND[3721]: (root) CMD (/root/Server/backup.sh)</span><br><span class="line">Jul 24 02:58:01 Server CROND[3720]: (root) MAIL (mailed 60 bytes of output but got status 0x004b#012)</span><br><span class="line">Jul 24 02:59:01 Server CROND[3795]: (root) CMD (/root/Server/backup.sh)</span><br><span class="line">Jul 24 02:59:01 Server CROND[3794]: (root) MAIL (mailed 60 bytes of output but got status 0x004b#012)</span><br><span class="line">Jul 24 03:00:01 Server CROND[3936]: (root) CMD (/root/Server/backup.sh)</span><br></pre></td></tr></table></figure></p><h1 id="问题排查及解决"><a href="#问题排查及解决" class="headerlink" title="问题排查及解决"></a>问题排查及解决</h1><p>从log可以看出脚本本身是没有问题的，于是把目标放定在<code>docker exec</code>这段命令上。通过百度解决方法无果，于是打开梯子上谷歌搜寻结果。最后在stackoverflow上找到了解决方案。<br><figure class="highlight markdown hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Your docker exec command says it needs "pseudo terminal and runs in interactive mode" (-it flags) while cron doesn't attach to any TTYs.</span><br><span class="line"></span><br><span class="line">Try changing you docker exec command to this and see if that works?</span><br><span class="line"></span><br><span class="line">docker exec mongodb mongodump -d meteor -o /dump/</span><br></pre></td></tr></table></figure></p><p>意思就是说，<code>docker exec -it</code>需要一个交互终端下运行，但是cron并不会附加到任何TTY。解决方法就是去掉<code>-it</code>这个选项就可以了。最后备份脚本如下。<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#!/bin/sh</span></span><br><span class="line">BACKUP_DIR=/root/Server/Mysql/backup</span><br><span class="line">TMP_DIR=/tmp/Mysql</span><br><span class="line">docker <span class="hljs-built_in">exec</span> dbc14c8c6660 mysqldump -uroot -pPASSWORD my_database &gt; <span class="hljs-variable">$TMP_DIR</span>/my_database.sql</span><br><span class="line"><span class="hljs-comment"># Delete first row</span></span><br><span class="line"><span class="hljs-comment"># Mysql Warning</span></span><br><span class="line">sed -i <span class="hljs-string">'1d'</span> <span class="hljs-variable">$TMP_DIR</span>/my_database.sql</span><br><span class="line"></span><br><span class="line">tar -zcf <span class="hljs-string">"<span class="hljs-variable">$BACKUP_DIR</span>/<span class="hljs-variable">$(date '+%Y-%m-%d_%H%M%S')</span>-my_database.tar.gz"</span>  -C <span class="hljs-variable">$TMP_DIR</span> my_database.sql</span><br><span class="line">rm -f <span class="hljs-variable">$TMP_DIR</span>/my_database.sql</span><br></pre></td></tr></table></figure></p><h1 id="参考文案"><a href="#参考文案" class="headerlink" title="参考文案"></a>参考文案</h1><p><a href="https://stackoverflow.com/questions/37089033/docker-exec-is-not-working-in-cron" target="_blank" rel="noopener">stackoverflow - docker exec is not working in cron</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因工作需求，在服务器的docker上部署的Mysql容器需要定时备份数据。于是在宿主机上写上了一个crontab，但是运行时没有报错，输出的文件大小为0。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Docker" scheme="http://yoursite.com/categories/Docker/"/>
+    
+      <category term="Bash" scheme="http://yoursite.com/categories/Docker/Bash/"/>
+    
+    
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
+    
+      <category term="bash" scheme="http://yoursite.com/tags/bash/"/>
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>用Docker部署一个PHP环境</title>
@@ -36,9 +64,9 @@
     
       <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
     
-      <category term="php" scheme="http://yoursite.com/tags/php/"/>
-    
       <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+      <category term="php" scheme="http://yoursite.com/tags/php/"/>
     
   </entry>
   

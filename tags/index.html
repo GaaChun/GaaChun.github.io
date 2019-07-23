@@ -8,7 +8,7 @@
 
 
 
-    <meta name="keywords" content="widget,docker,php,linux,first post,Hexo,vmware,fedora">
+    <meta name="keywords" content="widget,docker,bash,linux,php,first post,Hexo,vmware,fedora">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Chun&#39;s blog">
 <meta property="og:url" content="http://yoursite.com/tags/index.html">
@@ -182,9 +182,16 @@ var _hmt = _hmt || [];
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/bash/">
+                        <span class="tag">bash</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/docker/">
                         <span class="tag">docker</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -205,7 +212,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/linux/">
                         <span class="tag">linux</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -278,7 +285,7 @@ var _hmt = _hmt || [];
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        4
+                        5
                     </p>
                 </div>
             </div>
@@ -288,7 +295,7 @@ var _hmt = _hmt || [];
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        4
+                        5
                     </p>
                 </div>
             </div>
@@ -298,7 +305,7 @@ var _hmt = _hmt || [];
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        8
+                        9
                     </p>
                 </div>
             </div>
@@ -403,9 +410,17 @@ var _hmt = _hmt || [];
                 <span class="level-item">Docker</span>
             </span>
             <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Docker/Bash/">
+            <span class="level-start">
+                <span class="level-item">Bash</span>
+            </span>
+            <span class="level-end">
                 <span class="level-item tag">1</span>
             </span>
-        </a></li><li>
+        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Hexo/">
             <span class="level-start">
                 <span class="level-item">Hexo</span>
@@ -441,7 +456,7 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/fedora/" style="font-size: 10px;">fedora</a> <a href="/tags/first-post/" style="font-size: 10px;">first post</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/widget/" style="font-size: 10px;">widget</a>
+        <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/fedora/" style="font-size: 10px;">fedora</a> <a href="/tags/first-post/" style="font-size: 10px;">first post</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/vmware/" style="font-size: 10px;">vmware</a> <a href="/tags/widget/" style="font-size: 10px;">widget</a>
     </div>
 </div>
 
@@ -510,10 +525,10 @@ var _hmt = _hmt || [];
                 diff %= 86400;
                 var hour = Math.floor(diff / 3600);
                 // Remove the second of a hour
-                diff = diff % 3600;
+                diff %= 3600;
                 var minute = Math.floor(diff / 60);
                 // Remove the second of a minute
-                diff = diff % 60;
+                diff %= 60;
                 var second = Math.floor(diff);
 
                 if(typeof(timerViews)!="undefined"){
@@ -536,6 +551,25 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/07/24/docker-exec-not-working-in-cron/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Docker的exec命令无法在cron运行的问题">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-23T19:05:57.000Z">2019-07-24</time></div>
+                    <a href="/2019/07/24/docker-exec-not-working-in-cron/" class="has-link-black-ter is-size-6">Docker的exec命令无法在cron运行的问题</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Docker/">Docker</a> / <a class="has-link-grey -link" href="/categories/Docker/Bash/">Bash</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -626,6 +660,17 @@ var _hmt = _hmt || [];
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/04/">
                 <span class="level-start">
                     <span class="level-item">四月 2019</span>
@@ -668,9 +713,16 @@ var _hmt = _hmt || [];
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/bash/">
+                        <span class="tag">bash</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/docker/">
                         <span class="tag">docker</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -691,7 +743,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/linux/">
                         <span class="tag">linux</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -805,10 +857,10 @@ var _hmt = _hmt || [];
                 diff %= 86400;
                 var hour = Math.floor(diff / 3600);
                 // Remove the second of a hour
-                diff = diff % 3600;
+                diff %= 3600;
                 var minute = Math.floor(diff / 60);
                 // Remove the second of a minute
-                diff = diff % 60;
+                diff %= 60;
                 var second = Math.floor(diff);
 
                 if(typeof(timerViews)!="undefined"){
@@ -831,6 +883,25 @@ var _hmt = _hmt || [];
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/07/24/docker-exec-not-working-in-cron/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Docker的exec命令无法在cron运行的问题">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-23T19:05:57.000Z">2019-07-24</time></div>
+                    <a href="/2019/07/24/docker-exec-not-working-in-cron/" class="has-link-black-ter is-size-6">Docker的exec命令无法在cron运行的问题</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Docker/">Docker</a> / <a class="has-link-grey -link" href="/categories/Docker/Bash/">Bash</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -921,6 +992,17 @@ var _hmt = _hmt || [];
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/04/">
                 <span class="level-start">
                     <span class="level-item">四月 2019</span>
@@ -963,9 +1045,16 @@ var _hmt = _hmt || [];
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/bash/">
+                        <span class="tag">bash</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/docker/">
                         <span class="tag">docker</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -986,7 +1075,7 @@ var _hmt = _hmt || [];
                 <div class="control">
                     <a class="tags has-addons" href="/tags/linux/">
                         <span class="tag">linux</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 

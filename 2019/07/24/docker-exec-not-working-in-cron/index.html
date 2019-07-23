@@ -3,22 +3,27 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-<title>Chun&#39;s blog</title>
+<title>Docker的exec命令无法在cron运行的问题 - Chun&#39;s blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Chun&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+    <meta name="description" content="因工作需求，在服务器的docker上部署的Mysql容器需要定时备份数据。于是在宿主机上写上了一个crontab，但是运行时没有报错，输出的文件大小为0。">
+<meta name="keywords" content="docker,bash,linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker的exec命令无法在cron运行的问题">
+<meta property="og:url" content="http://yoursite.com/2019/07/24/docker-exec-not-working-in-cron/index.html">
 <meta property="og:site_name" content="Chun&#39;s blog">
+<meta property="og:description" content="因工作需求，在服务器的docker上部署的Mysql容器需要定时备份数据。于是在宿主机上写上了一个crontab，但是运行时没有报错，输出的文件大小为0。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-23T19:35:15.964Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chun&#39;s blog">
+<meta name="twitter:title" content="Docker的exec命令无法在cron运行的问题">
+<meta name="twitter:description" content="因工作需求，在服务器的docker上部署的Mysql容器需要定时备份数据。于是在宿主机上写上了一个crontab，但是运行时没有报错，输出的文件大小为0。">
 
 
 
-<link rel="alternative" href="/atom.xml" title="Chun&#39;s blog" type="application/atom+xml">
+<link rel="alternative" href="/atom.xml" title="Docker的exec命令无法在cron运行的问题" type="application/atom+xml">
 
 
 
@@ -118,7 +123,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.jpg" alt="Chun&#39;s blog" height="28">
+                <img src="/images/logo.jpg" alt="Docker的exec命令无法在cron运行的问题" height="28">
             
             </a>
         </div>
@@ -126,7 +131,7 @@ var _hmt = _hmt || [];
             
             <div class="navbar-start">
                 
-                <a class="navbar-item is-active" href="/">Home</a>
+                <a class="navbar-item" href="/">Home</a>
                 
                 <a class="navbar-item" href="/archives">Archives</a>
                 
@@ -165,8 +170,7 @@ var _hmt = _hmt || [];
         <div class="container">
             <div class="columns">
 
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-    <div class="card">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     
     <div class="card-content article ">
         
@@ -191,261 +195,123 @@ var _hmt = _hmt || [];
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/07/24/docker-exec-not-working-in-cron/">Docker的exec命令无法在cron运行的问题</a>
+                Docker的exec命令无法在cron运行的问题
             
         </h1>
         <div class="content">
             <p>因工作需求，在服务器的docker上部署的Mysql容器需要定时备份数据。于是在宿主机上写上了一个crontab，但是运行时没有报错，输出的文件大小为0。</p>
+<a id="more"></a>
+<h1 id="备份脚本"><a href="#备份脚本" class="headerlink" title="备份脚本"></a>备份脚本</h1><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#!/bin/sh</span></span><br><span class="line">BACKUP_DIR=/root/Server/Mysql/backup</span><br><span class="line">TMP_DIR=/tmp/Mysql</span><br><span class="line">docker <span class="hljs-built_in">exec</span> -it dbc14c8c6660 mysqldump -uroot -pPASSWORD my_database &gt; <span class="hljs-variable">$TMP_DIR</span>/my_database.sql</span><br><span class="line"><span class="hljs-comment"># Delete first row</span></span><br><span class="line"><span class="hljs-comment"># Mysql Warning</span></span><br><span class="line">sed -i <span class="hljs-string">'1d'</span> <span class="hljs-variable">$TMP_DIR</span>/my_database.sql</span><br><span class="line"></span><br><span class="line">tar -zcf <span class="hljs-string">"<span class="hljs-variable">$BACKUP_DIR</span>/<span class="hljs-variable">$(date '+%Y-%m-%d_%H%M%S')</span>-my_database.tar.gz"</span>  -C <span class="hljs-variable">$TMP_DIR</span> my_database.sql</span><br><span class="line">rm -f <span class="hljs-variable">$TMP_DIR</span>/my_database.sql</span><br></pre></td></tr></table></figure>
+<h1 id="查看log"><a href="#查看log" class="headerlink" title="查看log"></a>查看log</h1><p>执行<code>cat /var/log/cron</code>查看cron的执行状态<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Jul 24 02:57:01 Server CROND[3646]: (root) MAIL (mailed 60 bytes of output but got status 0x004b#012)</span><br><span class="line">Jul 24 02:58:01 Server CROND[3721]: (root) CMD (/root/Server/backup.sh)</span><br><span class="line">Jul 24 02:58:01 Server CROND[3720]: (root) MAIL (mailed 60 bytes of output but got status 0x004b#012)</span><br><span class="line">Jul 24 02:59:01 Server CROND[3795]: (root) CMD (/root/Server/backup.sh)</span><br><span class="line">Jul 24 02:59:01 Server CROND[3794]: (root) MAIL (mailed 60 bytes of output but got status 0x004b#012)</span><br><span class="line">Jul 24 03:00:01 Server CROND[3936]: (root) CMD (/root/Server/backup.sh)</span><br></pre></td></tr></table></figure></p>
+<h1 id="问题排查及解决"><a href="#问题排查及解决" class="headerlink" title="问题排查及解决"></a>问题排查及解决</h1><p>从log可以看出脚本本身是没有问题的，于是把目标放定在<code>docker exec</code>这段命令上。通过百度解决方法无果，于是打开梯子上谷歌搜寻结果。最后在stackoverflow上找到了解决方案。<br><figure class="highlight markdown hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Your docker exec command says it needs "pseudo terminal and runs in interactive mode" (-it flags) while cron doesn't attach to any TTYs.</span><br><span class="line"></span><br><span class="line">Try changing you docker exec command to this and see if that works?</span><br><span class="line"></span><br><span class="line">docker exec mongodb mongodump -d meteor -o /dump/</span><br></pre></td></tr></table></figure></p>
+<p>意思就是说，<code>docker exec -it</code>需要一个交互终端下运行，但是cron并不会附加到任何TTY。解决方法就是去掉<code>-it</code>这个选项就可以了。最后备份脚本如下。<br><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#!/bin/sh</span></span><br><span class="line">BACKUP_DIR=/root/Server/Mysql/backup</span><br><span class="line">TMP_DIR=/tmp/Mysql</span><br><span class="line">docker <span class="hljs-built_in">exec</span> dbc14c8c6660 mysqldump -uroot -pPASSWORD my_database &gt; <span class="hljs-variable">$TMP_DIR</span>/my_database.sql</span><br><span class="line"><span class="hljs-comment"># Delete first row</span></span><br><span class="line"><span class="hljs-comment"># Mysql Warning</span></span><br><span class="line">sed -i <span class="hljs-string">'1d'</span> <span class="hljs-variable">$TMP_DIR</span>/my_database.sql</span><br><span class="line"></span><br><span class="line">tar -zcf <span class="hljs-string">"<span class="hljs-variable">$BACKUP_DIR</span>/<span class="hljs-variable">$(date '+%Y-%m-%d_%H%M%S')</span>-my_database.tar.gz"</span>  -C <span class="hljs-variable">$TMP_DIR</span> my_database.sql</span><br><span class="line">rm -f <span class="hljs-variable">$TMP_DIR</span>/my_database.sql</span><br></pre></td></tr></table></figure></p>
+<h1 id="参考文案"><a href="#参考文案" class="headerlink" title="参考文案"></a>参考文案</h1><p><a href="https://stackoverflow.com/questions/37089033/docker-exec-is-not-working-in-cron" target="_blank" rel="noopener">stackoverflow - docker exec is not working in cron</a></p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/07/24/docker-exec-not-working-in-cron/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/bash/">bash</a>, <a class="has-link-grey -link" href="/tags/docker/">docker</a>, <a class="has-link-grey -link" href="/tags/linux/">linux</a>
                 </div>
             </div>
         </div>
         
+        
+        
+         
+<div class="social-share" style="text-align: center">
+    <h3 class="menu-label has-text-centered">❤ Share this page ❤</h3>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+<script>
+    var $config = {
+        sites: ["qzone","qq","weibo","wechat","google","facebook","twitter"], // 启用的站点
+        disabled: [null], // 禁用的站点
+        // 
+        //     wechatQrcodeTitle: '微信扫一扫：分享', // 微信二维码提示文字
+        // 
+        // 
+    }
+    socialShare('.social-share', $config);
+</script>
+
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？请作者喝杯咖啡吧❤</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>剁手用的</span>
+    <div class="qrcode"><img src="http://wx1.sinaimg.cn/mw690/a617e55cgy1g1ff5a46xgj20o011cn2v.jpg" alt="剁手用的"></div>
+</a>
 
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>吃饭用的</span>
+    <div class="qrcode"><img src="http://wx1.sinaimg.cn/large/a617e55cgy1g1ff59m67xj20u011vtbk.jpg" alt="吃饭用的"></div>
+</a>
 
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/04/18/docker-php-env/" class="image is-7by1">
-            <img class="thumbnail" src="/images/docker-php.jpg" alt="用Docker部署一个PHP环境">
-        </a>
+                
+        </div>
     </div>
-    
-    <div class="card-content article ">
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-04-18T04:57:20.000Z">2019-04-18</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Docker/">Docker</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    8 分钟 读完 (大约 1220 个字)
-                </span>
-                
-                
-            </div>
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/04/18/docker-php-env/">
+                <span class="level-item">用Docker部署一个PHP环境</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/04/18/docker-php-env/">用Docker部署一个PHP环境</a>
-            
-        </h1>
-        <div class="content">
-            <p>我喜欢Docker，它那容器服务的方式使我部署生产环境方便了好几倍，仅需要在本机上做好Dockerfile等配置文件，在服务器上执行就能得到统一的环境；当容器服务出错挂掉的时候也有重启服务，极大解决了环境部署的工作。在近日开始做PHP的工程，虽然有LAMP/LNAMP等环境给我选择，作为一个Docker死忠粉，决定用Docker部署一个PHP的生产环境。<br></p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/04/18/docker-php-env/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.4.1/gitalk.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.4.1/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '2059dc6d03d039d4dc1d',
+        clientSecret: 'e6488bef218f02522de5eab24b090639e5ae576b',
+        id: '06738e7c99c02d08a2c78c46332205ee',
+        repo: 'GaaChun.github.io',
+        owner: 'GaaChun',
+        admin: ["GaaChun"]
+    })
+    gitalk.render('comment-container')
+</script>
 
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/03/29/vmware-build-failed/" class="image is-7by1">
-            <img class="thumbnail" src="/images/vmware/vmware.png" alt="Vmware内核编译失败">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-29T14:39:21.000Z">2019-03-29</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Vmware/">Vmware</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    10 分钟 读完 (大约 1545 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/03/29/vmware-build-failed/">Vmware内核编译失败</a>
-            
-        </h1>
-        <div class="content">
-            <p>今天更新了Fedora的kernel,版本号为<code>5.0.3-200.fc29.x86_64</code>，Vmware Workstation版本号为<code>15.0.3</code>。每次更新kernel后用Vmware Workstation都要重新编译内核才能使用，可这次编译失败了。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/29/vmware-build-failed/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
     </div>
 </div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/03/26/cloud-widget/" class="image is-7by1">
-            <img class="thumbnail" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1500&amp;q=80" alt="网易云播放器小部件">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-26T12:26:28.000Z">2019-03-26</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Hexo/">Hexo</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Hexo/Widgets/">Widgets</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 分钟 读完 (大约 619 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/03/26/cloud-widget/">网易云播放器小部件</a>
-            
-        </h1>
-        <div class="content">
-            <p>做了一晚上，终于把自己的Blog给部署上Github了，用的icarus Theme。作为一个爱听歌的肥宅没有点音乐怎么行呢，然后给自己的Blog加了个网易云播放器～</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/26/cloud-widget/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/03/26/hello-world/" class="image is-7by1">
-            <img class="thumbnail" src="https://images.unsplash.com/photo-1546417492-3f58b4f55148?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1568&amp;q=80" alt="Hello World">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-25T16:00:01.000Z">2019-03-26</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    1 分钟 读完 (大约 122 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/03/26/hello-world/">Hello World</a>
-            
-        </h1>
-        <div class="content">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/03/26/hello-world/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 </div>
                 
 
@@ -1336,7 +1202,7 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.jpg" alt="Chun&#39;s blog" height="28">
+                    <img src="/images/logo.jpg" alt="Docker的exec命令无法在cron运行的问题" height="28">
                 
                 </a>
                 <p class="is-size-7">
